@@ -148,7 +148,7 @@ const Productos = (props) =>{
             </div>
             <div className={classes.actions}>
                 <Border >
-                    <h1>{!Modificando?'Agregandos':'Modificando'}</h1>
+                    <h1>{!Modificando?'Crear producto nuevo':'Modificar producto'}</h1>
                     <div>
                     <label>Nombre:</label>
                     <Input
