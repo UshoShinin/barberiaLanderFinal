@@ -1,0 +1,47 @@
+.container{
+    display: grid;
+    grid-template-columns: 48% 48%;
+    grid-column-gap:4% ;
+    padding: 2%;
+    position: relative;
+}
+
+.container > div >h1,
+.container > div >form >label{
+    color:var(--clr-inActive);
+    transition: all 180ms linear;
+}
+.container > div:hover >h1,
+.container > div:hover >form >label{
+    color:var(--clr-neon-white);
+}
+.container > div > form{
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    align-items: center;
+}
+
+@media (max-width:1125px){
+    .container{
+        grid-template-columns: auto;
+        grid-row-gap:20px ;
+    }
+}
+@media (max-width:570px){
+    .container > div > form{
+        grid-template-columns: none;
+        grid-template-areas:
+            "label input"
+            "B B";
+            grid-row-gap:10px ;
+    }
+    .label{
+        grid-area: label;
+    }
+    .input{
+        grid-area: input;
+    }
+    .button{
+        grid-area: B;
+    }
+}

@@ -1,0 +1,91 @@
+.disabled {
+  cursor: default;
+  color: var(--clr-inActive);
+  border: var(--clr-inActive) 0.125em solid;
+}
+
+.button {
+  cursor: pointer;
+  color: var(--clr-neon-blue);
+  border: var(--clr-neon-blue) 0.125em solid;
+  text-shadow: 0 0 0.18em hsl(240 100% 78%/0.3), 0 0 0.45em var(--clr-neon-blue);
+  box-shadow: inset 0 0 0.8em 0 var(--clr-neon-blue),
+    0 0 0.8em 0 var(--clr-neon-blue);
+}
+
+.button,
+.disabled {
+  font-size: 1.35rem;
+  font-family: "Staatliches";
+  letter-spacing: 0.1em;
+  width: max-content;
+  text-decoration: none;
+  border-radius: 0.4em;
+  padding: 0 0.6em;
+  height: 2em;
+  background-color: transparent;
+  position: relative;
+  transition: background-color 100ms linear, color 100ms linear,
+    text-shadow 100ms linear, border 100ms linear;
+}
+
+.button::after,
+.disabled::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: 0 0 2em 0.5em var(--clr-neon-blue);
+  opacity: 0;
+  transition: opacity 100ms linear;
+}
+
+.button:hover,
+.button:focus {
+  background: var(--clr-neon-blue);
+  color: #14141b;
+  text-shadow: none;
+}
+
+.button:hover::after,
+.button:focus::after {
+  opacity: 1;
+}
+.red {
+  color: var(--clr-neon-red);
+  border: var(--clr-neon-red) 0.125em solid;
+  text-shadow: 0 0 0.18em hsl(240 100% 78%/0.3), 0 0 0.45em var(--clr-neon-red);
+  box-shadow: inset 0 0 0.8em 0 var(--clr-neon-red),
+    0 0 0.8em 0 var(--clr-neon-red);
+}
+
+.red::after {
+  box-shadow: 0 0 2em 0.5em var(--clr-neon-red);
+}
+
+.red:hover,
+.red:focus {
+  background: var(--clr-neon-red);
+}
+
+.white {
+  color: var(--clr-neon-white);
+  border: var(--clr-neon-white) 0.125em solid;
+  text-shadow: 0 0 0.18em hsl(240 100% 78%/0.3),
+    0 0 0.45em var(--clr-neon-white);
+  box-shadow: inset 0 0 0.8em 0 var(--clr-neon-white),
+    0 0 0.8em 0 var(--clr-neon-white);
+}
+
+.white::after {
+  box-shadow: 0 0 2em 0.5em var(--clr-neon-white);
+}
+
+.white:hover,
+.white:focus {
+  background: var(--clr-neon-white);
+}
+@media (max-width: 1400px) {
+  .button,.disabled {
+    font-size: 1rem;
+  }
+}

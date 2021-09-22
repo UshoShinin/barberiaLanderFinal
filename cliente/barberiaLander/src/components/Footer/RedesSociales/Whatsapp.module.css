@@ -1,0 +1,9 @@
+.Icon{
+    font-size: 1.4rem;
+    margin:0.1em 0.17em 0.035em 0.17em;
+    color:var(--clr-inActive);
+    transition: color 200ms linear;
+}
+.IconActive{
+    color:var(--clr-neon-white);
+}

@@ -1,0 +1,59 @@
+.lis{
+    margin:7px auto 0 auto;
+    font-size: 1.3em;
+}
+
+.dia,.invalid{
+    max-width: 1.25em;
+    min-width: 1.25em;
+}
+.invalid{
+    margin: 0 auto;
+    color:var(--clr-red-inActive);
+}
+
+.dia{
+    text-align: center;
+    color:var(--clr-inActive);
+    text-shadow: 0 0 0.18em hsl(240 100% 78%/0.0);
+    transition: color 150ms linear,text-shadow 300ms linear;
+    cursor: pointer;
+}
+.dia:hover{
+    color:var(--clr-neon-white);
+    text-shadow: 0 0 0.18em hsl(240 100% 78%/0.3), 0 0 0.4em var(--clr-neon-blue),0 0 0.7em var(--clr-neon-blue);
+}
+
+.Lun{
+    grid-column-start:1;
+}
+.Mar{
+    grid-column-start:2;
+}
+.Mie{
+    grid-column-start:3;
+}
+.Jue{
+    grid-column-start:4;
+}
+.Vie{
+    grid-column-start:5;
+}
+.Sab{
+    grid-column-start:6;
+}
+.Dom{
+    grid-column-start:7;
+}
+.activo,.activo:hover{
+    color:var(--clr-neon-blue);
+    border-radius: 6px;
+     text-shadow: 0 0 0.5em var(--clr-neon-blue);
+}
+
+@media (max-width:1400px) {
+    .lis{
+        margin:0 auto;
+        font-size: 1em;
+    }
+  }

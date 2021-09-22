@@ -1,0 +1,55 @@
+.productos {
+  border: 1px var(--clr-neon-placeholder) solid;
+  box-shadow: 0 0 0.5em 0 var(--clr-neon-placeholder),
+    inset 0 0 0.5em 0 var(--clr-neon-placeholder);
+  overflow-y: scroll;
+}
+.disabled {
+  border: 1px var(--clr-inActive) solid;
+  box-shadow: 0 0 0em 0 var(--clr-inActive), inset 0 0 0em 0 var(--clr-inActive);
+  overflow-y: hidden;
+}
+.productos,
+.disabled {
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  overflow-x: hidden;
+  transition: border 180ms linear, box-shadow 200ms linear;
+}
+
+.productos > li {
+  color: var(--clr-neon-white);
+  cursor: pointer;
+}
+
+.disabled > li,
+.liDisabled {
+  color: var(--clr-inActive) !important;
+  cursor: default !important;
+}
+.liDisabled:hover{
+  background-color: transparent!important;
+  color: var(--clr-inActive)!important;
+}
+.productos > li,
+.disabled > li,
+.liDisabled {
+  font-size: 1.2em;
+  padding: 0.2em 0;
+  background-color: transparent;
+  transition: all 200ms linear;
+}
+
+.productos > li:hover{
+  background-color: var(--clr-neon-placeholder);
+  color:var(--clr-background);
+}
+
+.active,
+.active:hover {
+  background-color: var(--clr-neon-white) !important;
+  color:var(--clr-background) !important;
+}

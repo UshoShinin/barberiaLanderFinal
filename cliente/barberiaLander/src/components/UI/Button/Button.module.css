@@ -1,0 +1,95 @@
+.disabled {
+  cursor: default !important;
+  color: var(--clr-inActive);
+  border: var(--clr-inActive) 0.125em solid;
+}
+
+.button {
+  color: var(--clr-neon-blue);
+  border: var(--clr-neon-blue) 0.125em solid;
+  text-shadow: 0 0 0.18em hsl(240 100% 78%/0.3), 0 0 0.45em var(--clr-neon-blue);
+  box-shadow: inset 0 0 0.8em 0 var(--clr-neon-blue),
+    0 0 0.8em 0 var(--clr-neon-blue);
+}
+.disabled,
+.button {
+  font-size: 1.35rem;
+  font-family: "Staatliches";
+  letter-spacing: 0.1em;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 0.25em;
+  padding: 0.25em 1em;
+  background-color: transparent;
+  position: relative;
+  margin-bottom: 1.4em;
+  transition: background-color 100ms linear, color 100ms linear,
+    text-shadow 100ms linear;
+}
+
+.button::before {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  background-color: var(--clr-neon-blue);
+  top: 110%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  transform: perspective(1em) rotateX(50deg) scale(1, 0.33);
+  opacity: 0.7;
+  filter: blur(1em);
+  transition: opacity 110ms linear;
+}
+
+.button::after,
+.disabled::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: 0 0 2em 0.5em var(--clr-neon-blue);
+  opacity: 0;
+  transition: opacity 100ms linear;
+}
+
+.button:hover,
+.button:focus {
+  background: var(--clr-neon-blue);
+  color: #14141b;
+  text-shadow: none;
+}
+.button:hover::before,
+.button:focus::before {
+  opacity: 1;
+}
+.button:hover::after,
+.button:focus::after {
+  opacity: 1;
+}
+.red {
+  color: var(--clr-neon-red);
+  border: var(--clr-neon-red) 0.125em solid;
+  text-shadow: 0 0 0.18em hsl(240 100% 78%/0.3), 0 0 0.45em var(--clr-neon-red);
+  box-shadow: inset 0 0 0.8em 0 var(--clr-neon-red),
+    0 0 0.8em 0 var(--clr-neon-red);
+}
+
+.red::before {
+  background-color: var(--clr-neon-red);
+}
+
+.red::after {
+  box-shadow: 0 0 2em 0.5em var(--clr-neon-red);
+}
+
+.red:hover,
+.red:focus {
+  background: var(--clr-neon-red);
+}
+
+@media (max-width: 1400px) {
+  .button,.disabled {
+    font-size: 1rem;
+  }
+}

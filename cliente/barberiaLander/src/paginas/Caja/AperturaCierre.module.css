@@ -1,0 +1,248 @@
+.container {
+  padding: 1.4em;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  top:50px;
+  bottom: 0;
+}
+
+.cajaContainer {  
+  padding: 1.2em;
+}
+.labelText{
+  font-size: 1.3rem;
+}
+.alinearCampos{
+  position: relative;
+  align-items: center;
+}
+.alinearCampos > .label {
+  text-align: right;
+  margin-right: 0.7em;
+}
+.actions, 
+.abrirCerrar {
+  display: flex;
+}
+.abrirCerrar {
+  position: relative;
+  align-items: center;
+}
+
+.abrirCerrar > label,
+.abrirCerrar > div {
+  margin-right: 10px;
+}
+
+.actions {
+  flex-direction: column;
+  text-align: center;
+  height: 530px;
+  width: max-content;
+}
+.actions > button {
+  margin: 0 auto;
+}
+.actions > button + button {
+  margin-top: 0.7em;
+}
+
+.caja {
+  position: absolute;
+  top:15px;
+  left:0px;
+  right: 15px;
+  bottom: 15px;
+  margin-left: 1.3em;
+  display: grid;
+  grid-template-rows: max-content auto max-content;
+  grid-row-gap: 20px;
+}
+
+.Salida {
+  position: absolute;
+  right: 200px;
+}
+
+.Cerrar {
+  position: absolute;
+  right: 20px;
+}
+.comboAgenda{
+  height: 60px;
+}
+
+.agenda{
+  height: 100%;
+  display: grid;
+  grid-template-rows: max-content 80px max-content auto max-content;
+  grid-row-gap:10px
+}
+
+.dobleFild {
+    display: flex;
+}
+.dobleFild > div{
+  display: flex;
+  align-items: center;
+  width: 50%;
+  justify-content: center;
+  
+}
+.dobleFild > div > label{
+  margin-right:10px;
+}
+
+.agendaProductos{
+    display:grid;
+    grid-template-columns: 49% 49%;
+    grid-column-gap:2%;
+}
+
+.productos{
+  display: grid;
+  grid-row-gap:10px;
+  grid-template-rows: max-content max-content auto max-content;
+}
+.productos > h2{
+  font-size: 2em;
+}
+.productos > div{
+  height: 100%;
+  display: grid;
+  grid-template-columns: 45% 10% 45%;
+  position: relative;
+}
+.productos> div ::-webkit-scrollbar {
+  width: 1em;
+}
+/* Track */
+.productos> div ::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 0.8em 0 var(--clr-neon-white);
+  border-radius: 10px;
+  position: absolute;
+  right: 30px;
+}
+
+/* Handle */
+.productos> div ::-webkit-scrollbar-thumb {
+  background: var(--clr-neon-white);
+  border-radius: 10px;
+}
+.productosActions{
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+}
+.productosActions > button{
+  position: relative;
+  z-index: 100;
+}
+.servicios{
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+.text{
+  color: var(--clr-neon-white);
+  transition: color 200ms ease-out;
+}
+.servicios > div >h2{
+  cursor: pointer;
+}
+.textDisabled{
+  cursor: default !important;
+}
+
+.servicios > div >h2,.textDisabled{
+  color: var(--clr-inActive);
+  transition: color 200ms ease-out;
+}
+
+.active {
+  color: var(--clr-neon-blue) !important;
+}
+.total{
+  color:var(--clr-neon-white);
+  display: grid;
+  width: 100%;
+  grid-template-columns: 190px 190px 190px auto;
+  grid-column-gap:20px;
+}
+.total,.total > div{ 
+  display: flex;
+  align-items: center;
+  
+}
+
+.total > div > div + div{ /* Para los checkbox */
+  margin-left: 14px;
+}
+
+.MontoTotal{
+  width: 100%;  
+}
+.MontoTotal > h2{
+  font-size:2em;
+  margin-right: 10px;
+}
+
+.salidaDinero{
+  text-align: center;
+}
+.salidaDinero>h1{
+  margin-bottom: 10px;
+}
+.montoSalida{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.montoSalida > label{
+  margin-right: 10px;
+}
+.salidaDinero > div+div{
+  margin-top: 16px;
+}
+
+.invalid{
+  color:var(--clr-neon-red);
+}
+
+.title{
+  font-size: 2.7em;
+}
+.opcionesServicios{
+  font-size: 2em;
+}
+@media (max-width:1400px) {
+  .cajaContainer {  
+    padding: 0.6em;
+  }
+  .labelText{
+    font-size: 1rem;
+  }
+  .MontoTotal > h2{
+    font-size:1.5em;
+  }
+  .title{
+    font-size: 2em;
+  }
+  .opcionesServicios{
+    font-size: 1.5em;
+  }
+  .caja {
+    grid-template-rows: 66px auto 40px;
+    grid-row-gap: 20px;
+  }
+  .Salida {
+    right: 150px;
+  }
+  .productos > h2{
+    font-size: 1.5em;
+  }
+}

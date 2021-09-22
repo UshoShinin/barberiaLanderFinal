@@ -1,0 +1,95 @@
+.cuanto {
+  height: 20px;
+}
+
+.color1,
+.color2 {
+  transition: all 200ms linear;
+}
+.color1 {
+  box-shadow: 0 0 0 0 var(--clr-blue1-back);
+  background-color: var(--clr-blue1-back);
+}
+.color2 {
+  box-shadow: 0 0 0 0 var(--clr-blue2-back);
+  background-color: var(--clr-blue2-back);
+}
+
+.horario {
+  display: "flex";
+  align-items: "center";
+  justify-content: "center";
+  position: relative;
+}
+
+.horario:hover .color1 {
+  background-color: var(--clr-neon-blue);
+  box-shadow: 0 0 0.5em 0 var(--clr-neon-blue);
+}
+
+.horario:hover .color2 {
+  background-color: var(--clr-neon-blue2);
+  box-shadow: 0 0 0.5em 0 var(--clr-neon-blue2);
+}
+
+.horario > .cuanto + .cuanto {
+  margin-top: 8px;
+}
+
+.horario > p + p {
+  top: auto;
+  bottom: 0;
+}
+
+.title {
+  font-size: 2em;
+  color: var(--clr-neon-placeholder);
+  background-color: var(--clr-background-title);
+  border-radius: 5px;
+  height: 80px;
+}
+
+.Nav {
+  width: 60%;
+  margin: 10px auto;
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Nav > .Link {
+  border: 1px var(--clr-inActive) solid;
+  color: var(--clr-inActive);
+  width: 1.7em;
+  margin: 0 auto;
+  border-radius: 20%;
+  box-shadow: 0 0 0em 0 var(--clr-neon-cyan2);
+  cursor: pointer;
+  transition: border 200ms linear, color 200ms linear, box-shadow 200ms linear;
+}
+
+.Nav > .Link:hover {
+  border: 1px var(--clr-neon-white) solid;
+  color: var(--clr-neon-white);
+  box-shadow: 0 0 0.7em 0 var(--clr-neon-blue),
+    inset 0 0 0.3em 0 var(--clr-neon-blue);
+}
+
+@media (max-width: 760px) {
+  .Nav > .Link {
+    width: 1.2em;
+  }
+}
+
+@media (max-width: 580px) {
+  /* .title {
+    font-size: 1.2em;
+  } */
+  .Nav {
+    width: 96%;
+  }
+  .Nav > .Link {
+    width: 1.7em;
+  }
+}

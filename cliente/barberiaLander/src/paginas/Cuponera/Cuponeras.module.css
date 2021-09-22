@@ -1,0 +1,129 @@
+.container {
+  display: grid;
+  padding: 1%;
+  grid-column-gap: 1%;
+  grid-row-gap: 2%;
+  grid-template-columns: 49.5% 49.5%;
+  grid-template-rows: 49% 49%;
+  overflow: hidden;
+}
+.ajuste{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.container > div,
+.ajuste > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: relative;
+  overflow: hidden;
+  
+}
+.ajuste > div{
+  width:500px;
+  height:270px;
+  border-radius: 30px;
+}
+
+.container > div > .text,
+.container > div > .textDisabled,
+.ajuste > div > .text,
+.ajuste > div > .textDisabled {
+  position: absolute;
+  color: var(--clr-inActive);
+  top: 20px;
+  font-size: 2.6em;
+  transition: color 180ms linear;
+}
+.container > .borderDisabled > .text
+.ajuste > .borderDisabled > .text {
+  color: red;
+}
+.container > div:hover > .text,
+.ajuste > div:hover > .text {
+  color: var(--clr-neon-white);
+}
+
+.container > div .textP,
+.ajuste > div .textP {
+  color: var(--clr-inActive);
+  font-size: 1.15em;
+  transition: color 180ms linear;
+}
+
+.container > div:hover .textP,
+.ajuste > div:hover .textP {
+  color: var(--clr-neon-white);
+}
+
+.container > div > button,
+.ajuste > div > button {
+  position: absolute;
+  bottom: 20px;
+}
+
+.container > div > div,
+.ajuste > div > div {
+  display: grid;
+  align-items: center;
+  text-align: right;
+  grid-template-columns: max-content max-content;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+.container > div > div > .textL,
+.container > div > div > .textLDisabled,
+.ajuste > div > div > .textL,
+.ajuste > div > div > .textLDisabled {
+  color: var(--clr-inActive);
+  transition: color 180ms linear;
+  font-size: 1.8em;
+}
+.container > div:hover > div > .textL
+.ajuste > div:hover > div > .textL {
+  color: var(--clr-neon-white);
+}
+@media (max-width: 1400px) {
+  .container > div > .text,
+  .container > div > .textDisabled,
+  .ajuste > div > .text,
+  .ajuste > div > .textDisabled {
+    top: 20px;
+    font-size: 2em;
+  }
+  .container > div > div,
+  .ajuste > div > div {
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+  }
+  .container > div > div > .textL,
+  .container > div > div > .textLDisabled,
+  .ajuste > div > div > .textL,
+  .ajuste > div > div > .textLDisabled {
+    font-size: 1em;
+  }
+  .container > div .textP,
+  .ajuste > div .textP {
+    font-size: 1em;
+  }
+  .container > div > button,
+  .ajuste > div > button {
+    bottom: 10px;
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: auto;
+    grid-template-rows: repeat(4,270px);
+    padding-bottom: 90px;
+  }
+  .ajuste > div {
+    width:94%;
+    
+  }
+}

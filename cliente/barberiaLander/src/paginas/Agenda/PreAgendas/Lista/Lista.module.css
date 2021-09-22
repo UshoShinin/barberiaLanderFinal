@@ -1,0 +1,26 @@
+.lista {
+  padding: 8px 10px;
+  border-radius: 5px;
+  
+  overflow-y: scroll;
+  border: 2px var(--clr-inActive) solid;
+  box-shadow: 0 0 0em 0 var(--clr-neon-blue),
+    inset 0 0 0em 0 var(--clr-neon-blue);
+  transition: border 180ms linear, box-shadow 190ms linear;
+}
+
+.lista:hover {
+  border: 2px var(--clr-neon-white) solid;
+  box-shadow: 0 0 0.4em 0 var(--clr-neon-blue),
+    inset 0 0 0.4em 0 var(--clr-neon-blue);
+}
+/* width */
+.lista::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Handle */
+.lista::-webkit-scrollbar-thumb {
+  background-color: var(--clr-neon-white);
+  border-radius: 0.4em;
+}

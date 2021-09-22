@@ -1,0 +1,69 @@
+.footerContainer{
+    height: 221px;
+    position: relative;
+}
+
+.h1 {
+    font-family: 'Aleo', serif;
+}
+
+.Contactanos{
+    display:grid;
+    grid-template-columns: 48% 48%;
+    grid-column-gap:4%;
+    padding:4%;
+}
+
+.Contactanos>figure{
+    position: relative;
+    min-height: max-content;
+}
+.Contactanos>figure>img{
+    max-width: 100%;
+    border-radius: 10px;
+}
+.Contactanos>figure::after{
+    content:'';
+    position: absolute;
+    inset:0;
+    background-color: var(--clr-navbar);
+    opacity: 0.45;
+    z-index: 100;
+    transition: opacity 180ms linear;
+}
+
+.Contactanos>figure:hover::after{
+    opacity: 0.2;
+}
+
+.Contactanos>div{
+    /* background-color: cadetblue; */
+    /* min-height: 200px; */
+}
+
+.Contactanos>div{
+    /* height: max-content; */
+    height: 500px;
+    width: 100%;
+    color:var(--clr-neon-placeholder);
+    /* background-color: var(--clr-navbar); */
+}
+.Contactanos>div>p{
+    font-size: 1.1em;
+    text-align: left;
+    font-family: 'Aleo', serif;
+}
+
+.Contactanos>div>button{
+    margin-top: 40px;
+}
+@media (max-width:790px) {
+    
+    .Contactanos{
+        display:flex;
+        padding:5% 5% 18% 5% ;
+    }
+    .Contactanos>figure{
+        display: none;
+    }
+}

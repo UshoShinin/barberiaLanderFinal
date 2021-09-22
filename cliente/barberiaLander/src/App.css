@@ -1,0 +1,76 @@
+* {
+  -webkit-touch-callout: text;
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  padding: 0;
+  margin: 0;
+  font-family: 'Staatliches';
+}
+
+:root {
+  --clr-neon-blue: #0375eb;
+  --clr-neon-blue2: #83acd7;
+  --clr-neon-cyan:#b5d5f6; 
+  --clr-neon-cyan2:#d6e0ea;
+  --clr-neon-red:#fa1a52;
+  --clr-neon-white: #dadada/*efefef*/;
+  --clr-inActive: #737373; /*#c6c6c6;*/
+  --clr-inActive-button:#4a4a4d;
+  --clr-neon-placeholder: #cacaca;
+  --clr-neon-invalid:#cc3b3b;
+  --clr-red-inActive : #6b152a;
+  --clr-background:#14141b;
+  --clr-background-title:#0f0e12;
+  --clr-background-calendario:#50505e;
+  --clr-footer:#0f0f14;
+  --clr-navbar:#0f0f14; 
+  --clr-neon-green:#06c10f;
+  --clr-blue1-back: #284160;
+  --clr-blue2-back: #384b64;
+  --clr-dark-blue:#0c3f76;
+
+  --height-nav-bar:50px; 
+}
+.App {
+  text-align: center;
+  background-size: cover;
+  background-color: var(--clr-background);
+  min-height: 100vh;
+  width: 100%;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  background-color: var( --clr-background);
+  border: var(--clr-inActive) 0.125em solid;
+  border-radius: 0.25em;
+  -webkit-text-fill-color: var(--clr-inActive);
+  -webkit-box-shadow: var( --clr-background);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.fill-window {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+*:focus-visible{
+  outline: none;
+}

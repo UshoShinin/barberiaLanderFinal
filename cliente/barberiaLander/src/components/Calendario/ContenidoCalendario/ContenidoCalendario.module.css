@@ -1,0 +1,21 @@
+.diasCalendario {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  flex-shrink: 0;
+  width: 22.7em;
+  margin-right: 1em;
+}
+.diasCalendario > li > p{
+  margin:0px;
+  font-family: 'Aleo', serif;
+}
+
+
+@media (max-width:1400px) {
+  .diasCalendario {
+    width: 18em;
+  }
+  .diasCalendario > li +.diasCalendario > li {
+    margin-top:7px;
+  }
+}

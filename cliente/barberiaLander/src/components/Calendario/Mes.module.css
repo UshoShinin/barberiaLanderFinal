@@ -1,0 +1,188 @@
+.container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 20;
+  place-items: center;
+}
+.title {
+  text-align: center;
+  color: var(--clr-neon-white);
+  font-size: 1.6em;
+  font-family: "Aleo", serif;
+  margin: 0;
+}
+
+.Enero,
+.Febrero,
+.Marzo,
+.Abril,
+.Mayo,
+.Junio,
+.Julio,
+.Agosto,
+.Septiembre,
+.Octubre,
+.Noviembre,
+.Diciembre {
+  text-align: center;
+  overflow: hidden;
+  transition: all 200ms linear;
+  display: flex;
+  justify-content: center;
+}
+.Enero {
+  width: 24%;
+}
+.Febrero {
+  width: 30%;
+}
+.Marzo {
+  width: 25.5%;
+}
+.Abril {
+  width: 22%;
+}
+.Mayo {
+  width: 23%;
+}
+.Junio {
+  width: 21%;
+}
+.Julio {
+  width: 19.5%;
+}
+.Agosto {
+  width: 27%;
+}
+.Septiembre {
+  width: 40%;
+}
+.Octubre {
+  width: 30%;
+}
+.Noviembre {
+  width: 40%;
+}
+.Diciembre {
+  width: 36%;
+}
+
+.titleClose {
+  width: 0%;
+}
+
+.flecha {
+  font-size: 1.3em;
+  cursor: pointer;
+}
+
+.inactive {
+  color: var(--clr-inActive);
+  cursor: default;
+}
+.arrowCont {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  height: 24px;
+  border-top: 0px solid var(--clr-neon-white);
+  border-bottom: 0px solid var(--clr-neon-white);
+  transition: height 1000ms linear, border-top 1000ms linear,
+    border-bottom 1000ms linear;
+}
+
+.Open {
+  height: 24px;
+  border-top: 0px solid var(--clr-neon-white);
+  border-bottom: 0px solid var(--clr-neon-white);
+  transition: all 300ms linear forwards;
+  animation: openA 300ms linear forwards;
+}
+.Close {
+  height: 0px;
+  border-top: 1px solid var(--clr-neon-white);
+  border-bottom: 1px solid var(--clr-neon-white);
+  transition: all 300ms linear forwards;
+  animation: closeA 300ms linear forwards;
+}
+@keyframes openA {
+  0% {
+    height: 0px;
+    border-top: 1px solid var(--clr-neon-white);
+    border-bottom: 1px solid var(--clr-neon-white);
+  }
+  30% {
+    border-top: 0px solid var(--clr-neon-white);
+    border-bottom: 0px solid var(--clr-neon-white);
+  }
+  100% {
+    height: 24px;
+    border-top: 0px solid var(--clr-neon-white);
+    border-bottom: 0px solid var(--clr-neon-white);
+  }
+}
+@keyframes closeA {
+  0% {
+    height: 24px;
+    border-top: 0px solid var(--clr-neon-white);
+    border-bottom: 0px solid var(--clr-neon-white);
+  }
+  70% {
+    border-top: 0px solid var(--clr-neon-white);
+    border-bottom: 0px solid var(--clr-neon-white);
+  }
+  100% {
+    height: 0px;
+    border-top: 1px solid var(--clr-neon-white);
+    border-bottom: 1px solid var(--clr-neon-white);
+  }
+}
+
+@media (max-width: 1400px) {
+  .title {
+    font-size: 1.2em;
+  }
+  .Enero {
+    width: 22%;
+  }
+  .Febrero {
+    width: 28.5%;
+  }
+  .Marzo {
+    width: 23.5%;
+  }
+  .Abril {
+    width: 21%;
+  }
+  .Mayo {
+    width: 22%;
+  }
+  .Junio {
+    width: 21%;
+  }
+  .Julio {
+    width: 19.5%;
+  }
+  .Agosto {
+    width: 26%;
+  }
+  .Septiembre {
+    width: 39%;
+  }
+  .Octubre {
+    width: 28.5%;
+  }
+  .Noviembre {
+    width: 38.5%;
+  }
+  .Diciembre {
+    width: 34.5%;
+  }
+
+  .flecha {
+    font-size: 1em;
+  }
+}

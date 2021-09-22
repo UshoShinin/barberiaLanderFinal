@@ -1,0 +1,11 @@
+.card{
+    background-color:var(transparent);
+    max-width: 75%;
+    margin:0 auto;
+}
+
+@media (max-width:470px) {
+    .card{
+        max-width: 95%;
+    }
+}

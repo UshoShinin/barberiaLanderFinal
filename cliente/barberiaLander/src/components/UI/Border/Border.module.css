@@ -1,0 +1,33 @@
+.borderDisabled,
+.border {
+  padding: 1em;
+  border: 2px var(--clr-inActive) solid;
+  border-radius: 5px;
+  height: 100%;
+  position: relative;
+}
+
+.border {
+  box-shadow: 0 0 0em 0 var(--clr-inActive), inset 0 0 0em 0 var(--clr-inActive),
+    0 0 0em 0 var(--clr-inActive), inset 0 0 0em 0 var(--clr-inActive);
+  transition: color 180ms linear, border 200ms linear, box-shadow 220ms linear;
+}
+
+.border:hover {
+  border: 2px var(--clr-neon-white) solid;
+  box-shadow: 0 0 0.4em 0 var(--clr-neon-blue),
+    inset 0 0 0.4em 0 var(--clr-neon-blue), 0 0 0.7em 0 var(--clr-neon-blue),
+    inset 0 0 0.7em 0 var(--clr-neon-blue);
+}
+
+.invalid,
+.invalid:hover,
+.invalid2,
+.invalid2:hover {
+  border: 2px var(--clr-neon-white) solid;
+  box-shadow: 0 0 0.4em 0 var(--clr-neon-red),
+    inset 0 0 0.4em 0 var(--clr-neon-red), 0 0 0.7em 0 var(--clr-neon-red),
+    inset 0 0 0.7em 0 var(--clr-neon-red);
+  transition: color 180ms linear, border 200ms linear, box-shadow 220ms linear;
+}
+

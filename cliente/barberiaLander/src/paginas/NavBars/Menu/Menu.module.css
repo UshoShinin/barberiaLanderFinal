@@ -1,0 +1,176 @@
+.miniMenu {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.miniMenu > div {
+  display: block;
+  text-align: center;
+  padding: 0.8em;
+  text-decoration: none;
+  position: relative;
+  font-size: 1.1em;
+  color: var(--clr-neon-blue);
+  transition: all 170ms linear;
+  cursor: pointer;
+}
+
+.miniMenu > div > span {
+  position: relative;
+}
+
+.miniMenu > div::before {
+  content: "";
+  position: absolute;
+  right: 50%;
+  left: 50%;
+  opacity: 1;
+  top: 72%;
+  bottom: 20%;
+  background: var(--clr-neon-blue);
+  box-shadow: 0 0 0.3em 0 var(--clr-neon-blue);
+  transition: all 170ms linear;
+}
+
+.miniMenu > div:hover::before {
+  right: 0%;
+  left: 0%;
+  opacity: 1;
+  transition: all 170ms linear;
+}
+
+.miniMenu > div > span::after {
+  content: attr(data);
+  position: absolute;
+  text-align: center;
+  clip-path: polygon(
+    0 100%,
+    100% 100%,
+    100% 90%,
+    0 90%
+  ); /* x y  cambiar los últimos 2 valores*/
+  /* background-color: brown; */
+  left: 0;
+  color: black;
+}
+
+.active::before {
+  top: 20%;
+  bottom: 20%;
+  right: 0%;
+  left: 0%;
+  opacity: 1;
+  border-radius: 0px;
+  box-shadow: 0 0 0.3em 0 var(--clr-neon-blue), 0 0 0.7em 0 var(--clr-neon-red);
+  animation: selectedB 100ms linear forwards;
+}
+
+.active > span {
+  position: relative;
+}
+.active > span::after {
+  content: attr(data);
+  position: absolute;
+  left: 0;
+  clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 0);
+  /* background-color: brown; */
+  color: black;
+  animation: selectedA 100ms linear forwards;
+}
+
+@keyframes selectedB {
+  0% {
+    top: 72%;
+    bottom: 20%;
+    right: 0%;
+    left: 0%;
+    border-radius: 0px;
+  }
+  80% {
+    top: 30%;
+    bottom: 20%;
+    right: 0%;
+    left: 0%;
+    border-radius: 0px;
+  }
+  100% {
+    top: 20%;
+    bottom: 20%;
+    right: 0%;
+    left: 0%;
+    border-radius: 6px;
+  }
+}
+
+@keyframes selectedA {
+  0% {
+    clip-path: polygon(0 100%, 100% 100%, 100% 90%, 0 90%);
+  }
+  100% {
+    clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 0);
+  }
+}
+
+.miniMenu > ul {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 999;
+  top: 45px;
+  background-color: var(--clr-navbar);
+  width: max-content;
+  border-radius: 5px;
+}
+
+.miniMenu > ul > li {
+  display: inline-block;
+}
+
+.miniMenu > ul > li > a {
+  display: block;
+  text-align: center;
+  padding: 0.8em;
+  text-decoration: none;
+  position: relative;
+  font-size: 1.1em;
+  color: var(--clr-neon-blue);
+  transition: all 170ms linear;
+}
+.miniMenu > ul > li > a > span {
+  position: relative;
+}
+
+.miniMenu > ul > li a::before {
+  content: "";
+  position: absolute;
+  right: 50%;
+  left: 50%;
+  opacity: 1;
+  top: 72%;
+  bottom: 20%;
+  background: var(--clr-neon-blue);
+  box-shadow: 0 0 0.3em 0 var(--clr-neon-blue);
+  transition: all 170ms linear;
+}
+
+.miniMenu > ul > li >a:hover::before {
+  right: 0%;
+  left: 0%;
+  opacity: 1;
+  transition: all 170ms linear;
+}
+
+.miniMenu > ul > li >a > span::after {
+  content: attr(data);
+  position: absolute;
+  text-align: center;
+  clip-path: polygon(
+    0 100%,
+    100% 100%,
+    100% 90%,
+    0 90%
+  ); /* x y  cambiar los últimos 2 valores*/
+  /* background-color: brown; */
+  left: 0;
+  color: black;
+}

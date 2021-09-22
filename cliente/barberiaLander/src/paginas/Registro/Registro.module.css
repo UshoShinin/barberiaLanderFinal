@@ -1,0 +1,79 @@
+.alinear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container {
+  /* overflow: hidden; */
+}
+.container > div {
+  padding: 40px;
+  border-radius: 15px;
+}
+.container,
+.container > div {
+  width: max-content;
+  max-width: 100%;
+  margin: 0;
+}
+.container > div > h1 {
+  margin-bottom: 15px;
+  font-size: 2.9em;
+  color: var(--clr-inActive);
+  text-shadow: 0 0 0em var(--clr-background);
+  transition: color 180ms linear, text-shadow 200ms linear;
+}
+.container > div:hover > h1 {
+  color: var(--clr-neon-white);
+  text-shadow: 0 0 0.45em var(--clr-neon-blue);
+}
+.container > div > p {
+  margin-top: 15px;
+  max-width: 393px;
+  color: var(--clr-inActive);
+  font-size: 1.5em;
+  transition: color 180ms linear;
+}
+
+.container > div:hover > p {
+  color: var(--clr-neon-white);
+}
+
+.container > div > button {
+  margin-top: 15px;
+}
+.container > div > div {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: center;
+  grid-column-gap: 10px;
+  grid-row-gap: 11px;
+}
+
+.container > div > div > label {
+  font-size: 1.5em;
+  color: var(--clr-inActive);
+  text-align: right;
+  transition: color 180ms linear;
+}
+.container > div:hover > div > label {
+  color: var(--clr-neon-white);
+}
+
+@media (max-width: 1400px) {
+  .container > div > div > label {
+    font-size: 1em;
+  }
+  .container > div > p {
+    max-width: 272px;
+    font-size: 1em;
+  }
+
+  .container > div > h1 {
+    font-size: 2em;
+  }
+  .container > div {
+    padding: 20px;
+    border-radius: 15px;
+  }
+}

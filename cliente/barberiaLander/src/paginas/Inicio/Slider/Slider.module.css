@@ -1,0 +1,164 @@
+.Slider {
+  width: 100%;
+  height: max-content;
+  max-height: 450px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.Slider::before,
+.Slider::after {
+  content: "";
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 102;
+}
+.Slider::before {
+  left: 0;
+  right: 80%;
+  background: linear-gradient(0.25turn, var(--clr-navbar) 5%, transparent);
+}
+.Slider::after {
+  left: 80%;
+  right: 0;
+  background: linear-gradient(-0.25turn, var(--clr-navbar) 5%, transparent);
+}
+.Content {
+  height: max-content;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+.Content::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--clr-background);
+  opacity: 0.3;
+  z-index: 101;
+}
+.Content > img {
+  position: relative;
+  z-index: 100;
+  max-width: 100%;
+}
+
+@media (max-width: 900px) {
+  .Slider {
+    width: 100%;
+    height: max-content;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+}
+
+.Left,
+.Right {
+  position: absolute;
+  color: var(--clr-inActive-button);
+  z-index: 103;
+  border: none;
+  background-color: transparent;
+  font-size: 2em;
+  cursor: pointer;
+  transition: color 140ms linear;
+}
+.Left {
+  left: 5%;
+}
+.Right {
+  right: 5%;
+}
+
+.Left::before,
+.Right::before {
+  position: absolute;
+  color: var(--clr-neon-blue);
+  filter: blur(3px);
+  z-index: 104;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  opacity: 0;
+  transition: opacity 160ms linear;
+}
+.Right::before {
+  content: "\f053";
+}
+.Right::before {
+  content: "\f054";
+}
+.Slider > button:hover::before {
+  opacity: 1;
+}
+.Slider > button:hover {
+  color: var(--clr-neon-blue);
+}
+
+.miniNav {
+  padding: 8px;
+  position: absolute;
+  bottom: 20px;
+  z-index: 104;
+  display: flex;
+  border: 2px var(--clr-inActive-button) solid;
+  background-color: rgba(15, 15, 20, 0.4);
+  border-radius: 13px;
+  box-shadow: 0 0 0em 0 var(--clr-inActive-button),
+    inset 0 0 0em 0 var(--clr-inActive-button);
+  transition: border 180ms linear, box-shadow 200ms linear;
+}
+
+.miniNav:hover {
+  border: 2px var(--clr-neon-placeholder) solid;
+  box-shadow: 0 0 0.3em 0 var(--clr-neon-white),
+    inset 0 0 0.3em 0 var(--clr-neon-white);
+}
+
+.point,
+.active {
+  cursor: pointer;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  transition: background-color 170ms linear, border 180ms linear,
+    box-shadow 200ms linear;
+}
+
+.point {
+  box-shadow: 0 0 0em 0 var(--clr-inActive-button),
+    inset 0 0 0em 0 var(--clr-inActive-button);
+  border: 2px var(--clr-inActive-button) solid;
+  background-color: transparent;
+}
+
+.active {
+  box-shadow: 0 0 0.2em 0 var(--clr-neon-white),
+    inset 0 0 0.2em 0 var(--clr-neon-white), 0 0 0.5em 0 var(--clr-neon-white),
+    inset 0 0 0.5em 0 var(--clr-neon-white);
+  border: 2px var(--clr-neon-white) solid;
+  background-color: var(--clr-neon-white);
+  transition: all 200ms linear;
+}
+
+.point:hover {
+  border: 2px var(--clr-neon-placeholder) solid;
+  box-shadow: 0 0 0.3em 0 var(--clr-neon-white),
+    inset 0 0 0.3em 0 var(--clr-neon-white);
+}
+@media (max-width: 990px) {
+  .point:hover {
+    border: 2px var(--clr-inActive-button) solid;
+    box-shadow: 0 0 0em 0 var(--clr-inActive-button),
+      inset 0 0 0em 0 var(--clr-inActive-button);
+  }
+}
+.point + .point,
+.point + .active,
+.active + .point {
+  margin-left: 5px;
+}

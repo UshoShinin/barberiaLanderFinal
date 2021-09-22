@@ -1,0 +1,125 @@
+.container{
+    display: grid;
+    grid-template-columns: 20% auto 20%;
+    grid-template-rows:100%;
+    grid-column-gap: 10px;
+    padding:2%;
+}
+.container>div{
+    height: 100%;
+    position: relative;
+}
+.container>.actions{
+    display: grid;
+    grid-template-rows: 63% 35%;
+    grid-row-gap:2%
+}
+
+.actions > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.actions > div >div{
+    display: grid;
+    align-items: center;
+    text-align: right;
+    grid-column-gap:20px;
+    grid-row-gap:20px;
+    grid-template-columns: max-content max-content;
+}
+.actions > div >div > label{
+    color:var(--clr-inActive);
+    font-size: 1.5em;
+    transition: color 180ms linear;
+}
+.actions > div:hover >div > label{
+    color:var(--clr-neon-white);
+}
+.actions > div > h1{
+    font-size: 2.9em;
+    color:var(--clr-inActive);
+    position: absolute;
+    top:16px;
+    transition: color 180ms linear;
+}
+.actions > div:hover > h1{
+    color:var(--clr-neon-white);
+}
+.actions > div > p{
+    font-size: 1.5em;
+    margin-top: 10px;
+    color:var(--clr-inActive);
+    transition: color 180ms linear;
+}
+.actions > div:hover > p{
+    color:var(--clr-neon-white);
+}
+.actions > div > .disabled,
+.actions > div:hover > .disabled{
+    color:var(--clr-inActive);
+}
+
+.actions > div >div > .disabled,
+.actions > div:hover >div > .disabled{
+    color:var(--clr-inActive);
+}
+
+.actions > div > button{
+    font-size: 1.4em;
+    position: absolute;
+    bottom:30px
+}
+
+.actions > div >div  input{
+    font-size: 1.7em;
+    min-width: 400px;
+}
+/* .miLista{
+    position: absolute;
+    top:0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+} */
+
+.Listado{
+    display: grid;
+    grid-template-rows: max-content auto;
+    grid-row-gap:20px ;
+}
+.Listado >h1{
+    font-size: 3em;
+    color:var(--clr-neon-white);
+}
+
+
+
+@media (max-width:1400px) {
+    
+    .actions > div >div{
+        grid-column-gap:10px;
+        grid-row-gap:10px;
+    }
+    .actions > div > h1{
+        font-size: 2.4em;
+        top:8px;
+    }
+    .actions > div > button{
+        font-size: 1.1em;
+        bottom:15px
+    }
+    .actions > div >div > label,
+    .actions > div > p{
+        font-size: 1.2em;
+    }
+    .actions > div >div  input{
+        font-size: 1.3em;
+    }
+    .Listado >h1{
+        font-size: 2.4em;
+    }
+}

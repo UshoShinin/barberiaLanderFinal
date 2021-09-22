@@ -1,0 +1,73 @@
+.Facebook {
+  /* width: 2rem;
+    height: 2rem;
+    border-radius: 0.3em; */
+  width: 1.7em;
+  height: 1.71em;
+  border-right: 0.4em solid var(--clr-footer);
+  border-radius: 30%;
+  position: relative;
+  overflow: hidden;
+  transition: border 200ms linear;
+}
+.FacebookActive{
+    border-right: 0.4em solid var(--clr-neon-blue);
+}
+
+.vertical {
+  position: absolute;
+  background-color: var(--clr-footer);
+  width: 1.2em;
+  height: 2.5em;
+  border: 0.3em solid var(--clr-inActive);
+  bottom: -1em;
+  right: -0.64em;
+  border-radius: 0.5em;
+  transition:background-color 200ms linear, border 200ms linear;  
+  
+}
+.verticalActive{
+  background-color: var(--clr-neon-blue);
+  border: 0.3em solid var(--clr-neon-white);
+}
+.horizontal {
+  position: absolute;
+  background-color: var(--clr-inActive);
+  width: 0.9em;
+  height: 0.3em;
+  top: 0.8em;
+  right: -0.05em;
+  transition: background-color 200ms linear;
+}
+.horizontalActive{
+  background-color: var(--clr-neon-white);
+}
+
+.diagonal {
+  position: absolute;
+  background-color: var(--clr-footer);
+  width: 0.5em;
+  height: 0.35em;
+  right: -0.39374em;
+  top: .9em;
+  transform: rotateZ(-82deg);
+  transition: background-color 200ms linear;
+}
+.diagonalActive{
+  background-color: var(--clr-neon-blue);
+}
+
+.diagonal2 {
+  position: absolute;
+  background-color: var(--clr-footer);
+  width: 0.35em;
+  height: 0.35em;
+  right: -0.1em;
+  top: -.1em;
+  transform: rotateZ(-85deg);
+  transition: background-color 200ms linear;
+}
+
+.diagonal2Active{
+  background-color: var(--clr-neon-blue);
+}

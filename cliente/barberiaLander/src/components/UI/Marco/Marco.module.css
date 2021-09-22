@@ -1,0 +1,12 @@
+.ajuste{
+    position: absolute;
+    top:var(--height-nav-bar);
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+
+  .ajuste{
+    display: grid;
+    align-items: center;
+}

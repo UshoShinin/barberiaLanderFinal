@@ -1,0 +1,15 @@
+.card{
+    border-radius: 45px;
+    background-color:var(transparent);
+    border:1px var(--clr-neon-cyan) solid;
+    box-shadow: inset 0 0 0.2em 0 var(--clr-neon-cyan),inset 0 0 0.8em 0 var(--clr-neon-blue),
+    0 0 0.2em 0 var(--clr-neon-cyan), 0 0 0.8em 0 var(--clr-neon-blue);
+    max-width: 75%;
+    margin:0 auto;
+}
+
+@media (max-width:470px) {
+    .card{
+        max-width: 95%;
+    }
+}

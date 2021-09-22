@@ -1,0 +1,102 @@
+.redes {
+    list-style-type: none;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  .Elemento {
+    margin-right: 1em;
+    cursor: pointer;
+    border: 0.2em solid var(--clr-inActive);
+    border-radius: 30%;
+    background-color: var(--clr-facebook);
+    box-shadow: 0 0 0.1em 0 var(--clr-inActive);
+    transition: background-color 200ms linear, border 200ms linear,box-shadow 200ms linear;
+  }
+  .ElementoActiveFace{
+    background-color: var(--clr-neon-blue);
+    border: 0.2em solid var(--clr-neon-blue);
+    box-shadow: 0 0 .8em 0 var(--clr-neon-blue), 0 0 .3em 0 var(--clr-neon-white);
+  }
+  
+  .ElementoInsta {
+    position:relative;
+    cursor: pointer;
+    margin-right: 1em;
+    padding:0.2em;
+    border-radius: 30%;
+    box-shadow: 0 0 0.1em 0 var(--clr-inActive);
+    transition:box-shadow 200ms linear;
+    background: var(--clr-inActive);
+  }
+  .ElementoInsta::before{
+    opacity: 0;
+    content:'';
+    width: 2.1em;
+    height: 2.1em;
+    border-radius: 30%;
+    position:absolute;
+    inset:0;
+    background: radial-gradient(
+      circle at 33% 100%,
+      #fed373 4%,
+      #f15245 30%,
+      #d92e7f 62%,
+      #9b36b7 85%,
+      #515ecf);
+    filter:blur(0.33em);
+    transition: opacity 200ms linear;
+  }
+  .ElementoInsta::after{
+    opacity: 0;
+    content:'';
+    width: 2.1em;
+    height: 2.1em;
+    border-radius: 30%;
+    position:absolute;
+    inset:0;
+    background: var(--clr-inActive);
+    transition: opacity 200ms linear;
+  }
+  
+  .ElementoActiveInsta{
+      box-shadow: 0 0 0.2em 0 #d92e7f, inset 0 0 0.2em 0 #9b36b7;
+  }
+  
+  .ElementoActiveInsta::before {
+    opacity: 1;
+    content:'';
+    width: 2.1em;
+    height: 2.1em;
+    border-radius: 30%;
+    position:absolute;
+    inset:0;
+    background: radial-gradient(
+      circle at 33% 100%,
+      #fed373 4%,
+      #f15245 30%,
+      #d92e7f 62%,
+      #9b36b7 85%,
+      #515ecf);
+    filter:blur(0.33em);
+  }
+  
+  .ElementoActiveInsta::after{
+    opacity: 1;
+    background: radial-gradient(
+     circle at 33% 100%,
+     #fed373 4%,
+     #f15245 30%,
+     #d92e7f 62%,
+     #9b36b7 85%,
+     #515ecf);
+     box-shadow: 0 0 0.2em 0 #d92e7f, inset 0 0 0.2em 0 #9b36b7;
+     z-index:100;
+  }
+  
+  .ElementoActiveWasa{
+    background-color: var(--clr-neon-green);
+    border: 0.2em solid var(--clr-neon-green);
+    box-shadow: 0 0 .5em 0 var(--clr-neon-green), 0 0 .3em 0 var(--clr-neon-white);
+  }

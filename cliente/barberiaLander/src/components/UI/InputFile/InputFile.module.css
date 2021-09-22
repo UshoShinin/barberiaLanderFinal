@@ -1,0 +1,40 @@
+.file{
+    display:none;
+}
+
+.icons{
+    position:relative;
+}
+
+.icon{
+    margin-right: 0.55em;
+    font-size: 1.2em;
+}
+.plus{
+    top:-0.5em;
+    left:1.9em;
+    position: absolute;
+    font-size: 0.6em;
+}
+.label{
+    color:var(--clr-inActive);
+    font-size: 1em;
+    padding:0.4em;
+    width: 100%;
+    background-color: var(transparent);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    cursor: pointer;
+    border: 0.2em var(--clr-inActive) solid;
+    border-radius: 0.7em;
+    box-shadow: 0 0 0.1em 0 var(--clr-inActive);
+    transition:background-color 250ms linear, color 250ms linear, border 250ms linear, box-shadow 250ms linear;
+}
+.label:hover{
+    background-color: var(--clr-neon-white);
+    color:var(--clr-background);
+    border: 0.2em var(--clr-neon-white) solid;
+    box-shadow:0 0 1em 0 var(--clr-neon-white), 0 0 0.9em 0 var(--clr-neon-white) ,0 0 0.6em 0 var(--clr-neon-white) ,0 0 0.3em 0 var(--clr-neon-white);
+}

@@ -1,0 +1,64 @@
+.container{
+    display: grid;
+    grid-template-columns: 48% 48%;
+    grid-column-gap:4%;
+    position: relative;
+}
+
+.containerS{
+    display: grid;
+    grid-template-columns: auto;
+}
+
+
+.efectivos,.salidas{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    height: max-content;
+}
+
+.efectivos>h1,.efectivos>h2,
+.salidas>h1,.salidas>h2 {
+    text-shadow: 0 0 0.18em hsl(240 100% 78%/0.3), 0 0 0.45em var(--clr-neon-blue);
+  }
+
+.efectivos>div,
+.salidas>div{
+    height: max-content;
+    justify-content: center;
+    display: grid;
+    grid-column-gap:2%;
+    grid-row-gap:2%;
+    grid-template-columns: max-content max-content;
+    margin-bottom: 3.5%;
+}
+
+.efectivos > .buttons,
+.salidas > .buttons{
+    margin-top: 3%;
+    display:grid;
+    grid-template-columns: 49% 49%;  
+}
+
+.efectivos > .buttonsIn,
+.salidas > .buttonsIn{
+    margin-top: 3%;
+    display:grid;
+    grid-template-columns: 100%;  
+}
+.efectivos > .buttons > button,
+.efectivos > .buttonsIn > button,
+.salidas > .buttons > button,
+.salidas > .buttonsIn > button{
+    margin:0 auto;
+}
+.efectivos>div>.text,
+.salidas>div>.text{
+    text-align: right;
+}
+
+.efectivos>div>.num,
+.salidas>div>.num{
+    text-align: left;
+}

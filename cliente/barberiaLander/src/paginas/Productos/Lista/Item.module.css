@@ -1,0 +1,79 @@
+
+.item,.active {
+  border-radius: 5px;
+  padding: 6px;
+  display: grid;
+  grid-template-columns: auto max-content;
+  grid-column-gap:5px;
+  cursor:pointer;
+  transition: border 180ms ease-out, box-shadow 180ms ease-out;
+}
+
+.item {
+  border: 2px var(--clr-inActive) solid;
+  box-shadow: 0 0 0em 0 var(--clr-inActive);
+}
+
+.active,.active:hover {
+  border: 2px var(--clr-neon-blue) solid;
+  box-shadow: 0 0 0.6em 0 var(--clr-neon-blue),
+    inset 0 0 0.6em 0 var(--clr-neon-blue);
+}
+.item:hover {
+  border: 2px var(--clr-neon-white) solid;
+  box-shadow: 0 0 0.6em 0 var(--clr-neon-white),
+    inset 0 0 0.6em 0 var(--clr-neon-white);
+}
+.item > .content > h3,
+.item > .content > h4,
+.item > .content > p,
+.active > .content > h3,
+.active > .content > h4,
+.active > .content > p {
+  text-align: left;
+  word-spacing: 0.2em;
+  word-break: break-word;
+  text-shadow: 0 0 0em transparent;
+  transition: color 160ms ease-out, text-shadow 160ms ease-out;
+}
+
+.item > .content > h3,
+.item > .content > h4,
+.item > .content > p{
+  color: var(--clr-inActive);
+}
+.active > .content > h3,
+.active > .content > h4,
+.active > .content > p,
+.active:hover > .content > h3,
+.active:hover > .content > h4,
+.active:hover > .content > p  {
+  color: var(--clr-neon-blue);
+  text-shadow: 0 0 0.4em var(--clr-neon-blue);
+}
+
+.item > .content > h3,
+.active > .content > h3 {
+  font-size: 1.3em;
+  letter-spacing: 0.03em;
+}
+
+.item:hover > .content > h3,
+.item:hover > .content > h4,
+.item:hover > .content > p {
+  color: var(--clr-neon-white);
+  text-shadow: 0 0 0.4em var(--clr-neon-white);
+}
+
+.item > .content > h4,
+.active > .content > h4 {
+  font-size: 1.05em;
+  letter-spacing: 0.06em;
+}
+
+.item + .item,
+.active + .item,
+.item + .active,
+.active + .active {
+  margin-top: 0.5em;
+}
