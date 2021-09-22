@@ -10,7 +10,6 @@ import seven from "../../../recursos/ImagenesPrueba/7.jpg";
 import eight from "../../../recursos/ImagenesPrueba/8.jpg";
 import nine from "../../../recursos/ImagenesPrueba/9.jpg";
 import ten from "../../../recursos/ImagenesPrueba/10.jpg";
-import pelu from "../../../recursos/ImagenesPrueba/PeluqueriaDeEjemplo.jpg";
 import { CSSTransition } from "react-transition-group";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect } from "react";

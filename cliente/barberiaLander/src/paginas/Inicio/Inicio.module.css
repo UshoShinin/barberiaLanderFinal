@@ -16,7 +16,8 @@
 
 .Contactanos>figure{
     position: relative;
-    min-height: max-content;
+    max-height: max-content;
+    /* max-height: 100%; */
 }
 .Contactanos>figure>img{
     max-width: 100%;
@@ -42,11 +43,9 @@
 }
 
 .Contactanos>div{
-    /* height: max-content; */
-    height: 500px;
+    height: max-content;
     width: 100%;
     color:var(--clr-neon-placeholder);
-    /* background-color: var(--clr-navbar); */
 }
 .Contactanos>div>p{
     font-size: 1.1em;
