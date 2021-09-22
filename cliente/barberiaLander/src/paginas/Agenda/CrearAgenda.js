@@ -20,7 +20,10 @@ import {
 } from "../../components/Calendario/FuncionesAuxiliares";
 import { getDayIndex2 } from "../../components/Calendario/Dias/FunctionsDias";
 import { inputReducer } from "./FormularioAgenda/ReduerFormularioAgenda";
-
+import Pablo from '../../recursos/ImagenesPrueba/Pab.jpg'
+import Ignacio from '../../recursos/ImagenesPrueba/Ign.jpg'
+import Ezequiel from '../../recursos/ImagenesPrueba/Eze.jpg'
+import Larry from '../../recursos/ImagenesPrueba/Larry.jpg'
 const CrearAgenda = (props) => {
   const history = useHistory();
   const authCtx = useContext(AuthContext);
@@ -58,6 +61,7 @@ const CrearAgenda = (props) => {
   const [inputState, dispatchInput] = useReducer(inputReducer, initialState);
 
   const armadoDeDatos = (horarios, empleados, manejoAgenda) => {
+    let misEmpleados = [];
     let miManejoAgenda =
       manejoAgenda !== undefined ? manejoAgenda.AceptarRechazar : 0;
     let nombre;
@@ -68,6 +72,16 @@ const CrearAgenda = (props) => {
     let descripcion = { value: "", isValid: null };
     let comboBox = { value: null, active: false, title: "" };
     let id = 1;
+    let misFotos = [
+      {id:'48279578',foto:Ignacio},
+      {id:'50098037',foto:Ezequiel},
+      {id:'52991283',foto:Pablo},
+      {id:'62812502',foto:Larry}
+    ]
+    empleados.forEach(e => {
+      misEmpleados.push({...e,foto:getElementById(misFotos,e.id).foto})
+    });
+    console.log(misEmpleados);
     if (agenda !== null) {
       let empleado = getElementById(
         horarios.mensaje.empleados,
@@ -138,8 +152,8 @@ const CrearAgenda = (props) => {
       Nombre: { ...nombre },
       Telefono: { ...telefono },
       Descripcion: { ...descripcion },
-      Horarios: [...empleados],
-      HorariosFiltrados: [...empleados],
+      Horarios: [...misEmpleados],
+      HorariosFiltrados: [...misEmpleados],
       Employee: { ...empoooo },
       servicios: { ...servicios },
       Calendario: { ...Calendario },
