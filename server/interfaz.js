@@ -3271,14 +3271,20 @@ const calcularPropina = async (ciEmpleado, idCaja) => {
       .input("idCaja", sql.Int, idCaja)
       .input("ciEmpleado", sql.VarChar, ciEmpleado)
       .query(
-        "select SUM(E.Propina) as totalPropinas from EntradaDinero E, Empleado EP, Caja_Entrada C where E.Cedula = EP.Cedula and C.IdEntrada = E.IdEntrada and EP.Cedula = @ciEmpleado and C.IdCaja = @idCaja "
+        "select SUM(E.Propina) as totalPropinas from EntradaDinero E, Empleado EP, Caja_Entrada C where E.Cedula = EP.Cedula and C.IdEntrada = E.IdEntrada and E.Cedula = @ciEmpleado and C.IdCaja = @idCaja"
       );
     if (propinas.rowsAffected[0] < 1) {
       return { codigo: 400, mensaje: "Error al ir a buscar las propinas" };
     } else {
+      
+      //Verifico que la propina no sea null
+      let propina = 0
+      if (propinas.recordset[0].totalPropinas !== null) {
+        propina = propinas.recordset[0].totalPropinas
+      }
       return {
         codigo: 200,
-        mensaje: propinas.recordset[0].totalPropinas,
+        mensaje: propina,
       };
     }
   } catch (error) {
