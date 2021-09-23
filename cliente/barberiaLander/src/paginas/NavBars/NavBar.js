@@ -8,7 +8,6 @@ import Note from "../../components/UI/Note/Note";
 import { initialState,reducer } from "./reducerBar";
 import inputs from "./inputs";
 import useHttp from "../../hooks/useHttp";
-import { comparaFechas } from "../../FuncionesAuxiliares/FuncionesAuxiliares";
 import Modal from "../../components/UI/Modal/Modal";
 import ComboBox from "../../components/ComboBox/ComboBox";
 import SimpleButton from "../../components/UI/SimpleButton/SimpleButton";

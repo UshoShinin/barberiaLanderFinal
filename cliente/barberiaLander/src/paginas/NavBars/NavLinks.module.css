@@ -16,3 +16,25 @@
     align-items: center;
     margin-bottom: 24px;
 }
+
+.campos>label{
+    font-size: 1.8em;
+}
+
+@media (max-width:1400px) {
+    .campos>label{
+        font-size: 1.3em;
+    }
+    .campos input{
+        font-size:1.3em;
+    }
+}
+
+@media (max-width:900px) {
+    .campos>label{
+        font-size: 1em;
+    }
+    .campos input{
+        font-size:1em;
+    }
+}
