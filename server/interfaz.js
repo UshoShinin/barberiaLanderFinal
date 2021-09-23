@@ -3261,7 +3261,7 @@ const discontinuarProducto = async (idProducto, discontinuar) => {
 };
 
 //Metodo para calcular las propinas hasta el momento de un empleado
-const calcularPropina = async (ciEmpleado, idCaja) => {
+const calcularPropina = async (ciEmpleado) => {
   try {
     //Voy a buscar la caja para usarla
     const caja = await getCaja();
@@ -3305,7 +3305,7 @@ const calcularPropina = async (ciEmpleado, idCaja) => {
 };
 
 //Metodo para calcular las comisiones de un empleado hasta el momento
-const calcularComision = async (ciEmpleado, idCaja) => {
+const calcularComision = async (ciEmpleado) => {
   try {
     //Voy a buscar la caja
     const caja = await getCaja();
@@ -3624,7 +3624,7 @@ const getSalarioBaseEmpleado = async (ciEmpleado) => {
 };
 
 //Metodo para calcular el jornal de un empleado
-const calcularJornal = async (ciEmpleado, idCaja, minExtra) => {
+const calcularJornal = async (ciEmpleado, minExtra) => {
   try {
     //Voy a buscar la caja
     const caja = await getCaja();
@@ -3638,8 +3638,8 @@ const calcularJornal = async (ciEmpleado, idCaja, minExtra) => {
         };
       } else {
         //Voy a buscar todos los montos por separado
-        const comision = await calcularComision(ciEmpleado, idCaja);
-        const propina = await calcularPropina(ciEmpleado, idCaja);
+        const comision = await calcularComision(ciEmpleado);
+        const propina = await calcularPropina(ciEmpleado);
         const horasExtra = await calcularPagoHorasExtra(ciEmpleado, minExtra);
         const salarioBase = await getSalarioBaseEmpleado(ciEmpleado);
         //Devuelvo la suma de todos estos valores
