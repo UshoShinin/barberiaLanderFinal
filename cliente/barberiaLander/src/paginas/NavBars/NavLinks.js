@@ -1,6 +1,7 @@
 import classes from "./NavBar.module.css";
+import classesCal from "./NavLinks.module.css";
 import { NavLink } from "react-router-dom";
-import { useContext, useReducer } from "react";
+import { useContext, useReducer,useRef } from "react";
 import AuthContext from "../../store/AuthContext";
 import Menu from "./Menu/Menu";
 import NavButton from "./NavButton/NavButton";
@@ -14,11 +15,13 @@ import useHttp from "../../hooks/useHttp";
 import { comparaFechas } from "../../FuncionesAuxiliares/FuncionesAuxiliares";
 import Modal from "../../components/UI/Modal/Modal";
 import ComboBox from "../../components/ComboBox/ComboBox";
+import SimpleButton from "../../components/UI/SimpleButton/SimpleButton";
 
 const NavLinks = (props) => {
   const authCtx = useContext(AuthContext);
   const isLoggedIn = authCtx.isLoggedIn;
   const mobile = document.getElementById('root').clientWidth<900;
+  const refM = useRef();
   const pedirCaja = useHttp()
   const comision = useHttp()
   const propinas = useHttp()
@@ -31,9 +34,16 @@ const NavLinks = (props) => {
   const calcularComision = () =>{
     pedirCaja({url:'/cajaParaCalculos'},callComision);
   }
-
+  const calcularPropina = () =>{
+    pedirCaja({url:'/cajaParaCalculos'},callPropinas);
+  }
+  
   const respuestaComision = (res) =>{
+    dispatch({type:'SHOW_MENSAJE',value:'El total acumulado en comisiones es de ' + res.mensaje.mensaje});
+  }
+  const respuestaPropina = (res) =>{
     console.log(res);
+    dispatch({type:'SHOW_MENSAJE',value:'El total acumulado en propinas es de ' + res.mensaje.mensaje});
   }
 
   const callComision = (res) =>{
@@ -58,8 +68,60 @@ const NavLinks = (props) => {
       }
     }
   }
+
+  const callPropinas = (res) =>{
+    const date = new Date();
+    const caja = res.mensaje;
+    if(caja.idCaja===-1) dispatch({type:'SHOW_MENSAJE',value:'La caja aun no está abierta'});
+    else if(comparaFechas(date.getDate(),date.getMonth()+1,date.getFullYear(),caja.caja.fecha.substring(0,10))) dispatch({type:'SHOW_MENSAJE',value:'Hay una caja pendiente de una fecha pasada'});
+    else{
+      if(Admin){
+        dispatch({type:'GUARDAR_CAJA',value:caja.caja.idCaja});
+        empleados({url:'/listadoHabilitarEmpleados'},obtenerEmpleadosP);
+      }else{
+        comision(
+          {
+            url: "/propina",
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: {ciEmpleado:authCtx.user.ciUsuario,idCaja:caja.caja.idCaja},
+          },
+          respuestaPropina
+        );
+      }
+    }
+  }
+
+  const AdminCalC = () =>{
+    comision(
+      {
+        url: "/comision",
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: {ciEmpleado:state.empleado,idCaja:state.caja},
+      },
+      respuestaComision
+    );
+  }
+
+  const AdminCalP = () =>{
+    comision(
+      {
+        url: "/propina",
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: {ciEmpleado:state.empleado,idCaja:state.caja},
+      },
+      respuestaPropina
+    );
+  }
+
   const obtenerEmpleadosC = (res) => {
-    dispatch({type:'CARGAR',payload:res.mensaje.mensaje,destino:()=>{}});
+    dispatch({type:'CARGAR',payload:res.mensaje.mensaje,destino:{function:AdminCalC,char:'C'}});
+  }
+  const obtenerEmpleadosP = (res) => {
+    console.log(res);
+    dispatch({type:'CARGAR',payload:res.mensaje.mensaje,destino:{function:AdminCalP,char:'P'}});
   }
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -86,12 +148,24 @@ const NavLinks = (props) => {
     <>
     <Marco>
       <Note show={state.Mensaje.show} onClose={()=>{dispatch({type:'HIDE_MENSAJE'})}}>{state.Mensaje.text}</Note>
-      <Modal show={state.Modal}>
-        <ComboBox current={state.empleado} opciones={state.empleados}/>
+      <Modal show={state.Modal} className={classesCal.modal}>
+        <div>
+          <ComboBox 
+          current={state.empleado.value} 
+          active={state.empleado.active}
+          height={8}
+          onChange={(id) => {
+            dispatch({ type: "SELECT", value: id });
+          }}
+          onClick={() => {
+            dispatch({ type: "CLICK" });
+          }}
+          opciones={state.empleados}/>
+          <SimpleButton action={state.destino.function}>Calcular</SimpleButton>
+        </div>
       </Modal>
     </Marco>
       <ul className={classes.navbarUl}>
-        {/* <li><Link to="/" className="navbar-brand">Lander</Link></li>  */}
         {!mobile&&<li className={classes.Logo}>
           <img className={classes.base} src={LogoAzulH} />
           <img className={classes.blur} src={LogoAzulH} />
@@ -211,6 +285,9 @@ const NavLinks = (props) => {
         )}
         <li>
           <NavButton onClick={calcularComision}>Comisiones</NavButton>
+        </li>
+        <li>
+          <NavButton onClick={calcularPropina}>Propinas</NavButton>
         </li>
         {isLoggedIn && (
           <li>

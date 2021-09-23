@@ -1,0 +1,7 @@
+.modal{
+    padding-top: 60px;
+}
+
+.modal>div>div{
+    height: 70px;
+}

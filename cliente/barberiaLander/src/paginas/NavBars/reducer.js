@@ -6,8 +6,8 @@ export const initialState = {
      Minutos:{value:'',isValid:null},
      problema:'',
      empleados:null,
-     empleado:null,
-     destino:null,
+     empleado:{value:null,active:false},
+     destino:{function:null,char:''},
      caja:null
     };
 export const reducer = (state, action) => {
@@ -23,7 +23,12 @@ export const reducer = (state, action) => {
         active: state.active === action.value ? -1 : action.value,
       };
     case 'CARGAR':
-        return{...state,empleados:[...action.payload],Modal:true,action:action.destino}
+        let empas =action.payload.filter( e => e.id!=='48279578');
+        return {...state,empleados:[...empas],empleado:{value:empas[0].id,active:false},Modal:true,destino:action.destino}
+    case 'CLICK':
+        return {...state,empleado:{...state.empleado,active:!state.empleado.active}}
+    case 'SELECT':
+        return {...state,empleado:{value:action.value,active:false}}
     case "USER_MINUTOS":
         return {
             ...state,
@@ -42,7 +47,6 @@ export const reducer = (state, action) => {
             problema:!valido?'Los minutos debe ser un número entero, positivo de máximo 6 carácteres':'',
         };
     case "SHOW_MENSAJE":
-        console.log(action.value);
         return { ...state, Mensaje: { show: true, text: action.value } };
     case "HIDE_MENSAJE":
         return { ...state, Mensaje: { ...state.Mensaje, show: false } };
