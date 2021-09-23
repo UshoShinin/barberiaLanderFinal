@@ -3307,27 +3307,40 @@ const calcularPropina = async (ciEmpleado, idCaja) => {
 //Metodo para calcular las comisiones de un empleado hasta el momento
 const calcularComision = async (ciEmpleado, idCaja) => {
   try {
-    //Voy a buscar el total de comision sin limite del empleado
-    const comisionSinLimite = await calcularComisionSinLimite(
-      ciEmpleado,
-      idCaja
-    );
-    //Voy a buscar el total de comision con limite del empleado
-    const comisionConLimite = await calcularComisionConLimite(
-      ciEmpleado,
-      idCaja
-    );
-    //Voy a buscar el total de comision de productos
-    const comisionProductos = await calcularComisionProductos(
-      ciEmpleado,
-      idCaja
-    );
-    //Hago la suma de las comisiones
-    let comisionTotal =
-      comisionConLimite.mensaje +
-      comisionSinLimite.mensaje +
-      comisionProductos.mensaje;
-    return { codigo: 200, mensaje: comisionTotal };
+    //Voy a buscar la caja
+    const caja = await getCaja();
+    if (caja.rowsAffected[0] < 1) {
+      return { codigo: 400, mensaje: "No hay caja abierta" };
+    } else {
+      if (caja.recordset[0].total !== 0) {
+        return {
+          codigo: 400,
+          mensaje: "No hay caja abierta, debe abrir la caja primero",
+        };
+      } else {
+        //Voy a buscar el total de comision sin limite del empleado
+        const comisionSinLimite = await calcularComisionSinLimite(
+          ciEmpleado,
+          caja.recordset[0].idCaja
+        );
+        //Voy a buscar el total de comision con limite del empleado
+        const comisionConLimite = await calcularComisionConLimite(
+          ciEmpleado,
+          caja.recordset[0].idCaja
+        );
+        //Voy a buscar el total de comision de productos
+        const comisionProductos = await calcularComisionProductos(
+          ciEmpleado,
+          caja.recordset[0].idCaja
+        );
+        //Hago la suma de las comisiones
+        let comisionTotal =
+          comisionConLimite.mensaje +
+          comisionSinLimite.mensaje +
+          comisionProductos.mensaje;
+        return { codigo: 200, mensaje: comisionTotal };
+      }
+    }
   } catch (error) {
     console.log(error);
   }
@@ -3613,22 +3626,36 @@ const getSalarioBaseEmpleado = async (ciEmpleado) => {
 //Metodo para calcular el jornal de un empleado
 const calcularJornal = async (ciEmpleado, idCaja, minExtra) => {
   try {
-    //Voy a buscar todos los montos por separado
-    const comision = await calcularComision(ciEmpleado, idCaja);
-    const propina = await calcularPropina(ciEmpleado, idCaja);
-    const horasExtra = await calcularPagoHorasExtra(ciEmpleado, minExtra);
-    const salarioBase = await getSalarioBaseEmpleado(ciEmpleado);
-    //Devuelvo la suma de todos estos valores
-    return {
-      codigo: 200,
-      mensaje: comision.mensaje + propina.mensaje + horasExtra + salarioBase,
-      detalle: {
-        comision: comision.mensaje,
-        propina: propina.mensaje,
-        horasExtra: horasExtra,
-        salarioBase: salarioBase,
-      },
-    };
+    //Voy a buscar la caja
+    const caja = await getCaja();
+    if (caja.rowsAffected[0] < 1) {
+      return { codigo: 400, mensaje: "No hay caja abierta" };
+    } else {
+      if (caja.recordset[0].total !== 0) {
+        return {
+          codigo: 400,
+          mensaje: "No hay caja abierta, debe abrir la caja",
+        };
+      } else {
+        //Voy a buscar todos los montos por separado
+        const comision = await calcularComision(ciEmpleado, idCaja);
+        const propina = await calcularPropina(ciEmpleado, idCaja);
+        const horasExtra = await calcularPagoHorasExtra(ciEmpleado, minExtra);
+        const salarioBase = await getSalarioBaseEmpleado(ciEmpleado);
+        //Devuelvo la suma de todos estos valores
+        return {
+          codigo: 200,
+          mensaje:
+            comision.mensaje + propina.mensaje + horasExtra + salarioBase,
+          detalle: {
+            comision: comision.mensaje,
+            propina: propina.mensaje,
+            horasExtra: horasExtra,
+            salarioBase: salarioBase,
+          },
+        };
+      }
+    }
   } catch (error) {
     console.log(error);
     return {
