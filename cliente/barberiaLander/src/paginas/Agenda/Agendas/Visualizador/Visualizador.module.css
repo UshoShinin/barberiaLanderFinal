@@ -1,0 +1,103 @@
+.container{
+  padding: 4%;
+}
+
+.container > div > div > h2 + h2 {
+  margin-top: 0.4em;
+}
+.container > div > div > h1{
+  font-size: 3.4em;
+  margin-bottom: 0.6em;
+}
+.container > .content {
+  display: grid;
+  grid-template-columns: 35% auto;
+  grid-column-gap: 4%;
+}
+.container > div > div > h2 {
+  color: var(--clr-inActive);
+  font-size: 2.7em;
+  transition: color 200ms linear;
+}
+
+.container > button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+.datos {
+  color: var(--clr-inActive);
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-row-gap: 1em;
+}
+
+.Descripcion > h2{
+  font-size: 2.3em;
+}
+.Descripcion > p{
+  font-size: 1.95em;
+  word-break: break-word;
+}
+
+.datos >label{
+  font-size: 1.95em;
+}
+.active {
+  color: var(--clr-neon-blue) !important;
+}
+
+.downData {
+  color: var(--clr-inActive);
+  transition: all 200ms linear;
+}
+
+.activeData {
+  color: var(--clr-neon-white);
+}
+
+.hide {
+  opacity: 0;
+  color: var(--clr-inActive);
+  transition: all 200ms linear;
+}
+
+.show {
+  color: var(--clr-neon-white);
+  opacity: 1;
+}
+.foto {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.foto > img {
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 20px;
+}
+.Descripcion {
+  display: grid;
+  grid-template-columns: 100%;
+}
+@media (max-width: 1400px) {
+  .container > div > div > h2 + h2 {
+    margin-top: 0.4em;
+  }
+  .container > div > div > h1{
+    font-size: 2.4em;
+  }
+  .container > div > div > h2 {
+    font-size: 1.9em;
+  }
+  .datos >label{
+    font-size: 1.25em;
+  }
+  .Descripcion > h2{
+    font-size: 1.55em;
+  }
+  .Descripcion > p{
+    font-size: 1.25em;
+  }
+}

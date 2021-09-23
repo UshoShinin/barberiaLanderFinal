@@ -148,9 +148,9 @@ const VisualAgendas = () => {
                   </div>
                 </div>
               </div>
-              {generarNavegacion(8, 22)}
+              {generarNavegacion(10, 20)}
               <div className={classes.container}>
-                <div className={classes.marcas}>{generarHoras(8, 22)}</div>
+                <div className={classes.marcas}>{generarHoras(10, 20)}</div>
                 <div className={classes.empleados}>{empleados}</div>
               </div>
               <button

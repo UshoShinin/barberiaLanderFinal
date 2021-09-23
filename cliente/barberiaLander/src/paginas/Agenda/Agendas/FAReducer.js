@@ -42,8 +42,6 @@ export const reducer = (state, action) => {
             }
           : null;
       return { ...state, agendaAModificar: agendita };
-    case 'SELECT_AGENDA':
-      return {...state,}
     case "SELECT_AGENDA":
       return { ...state, agendaId: action.value };
     case 'SHOW_PREGUNTA':
@@ -65,6 +63,9 @@ export const reducer = (state, action) => {
       return {...state,Mensaje:{show:true,value:action.value}};
     case 'HIDE_MENSAJE':
       return {...state,Mensaje:{show:false,value:state.Mensaje.value}};
+    case 'CLEAN_SELECT':
+      console.log('entre');
+      return {...state,agendaId:null};
     default:
       return { ...state };
   }

@@ -39,8 +39,8 @@ export const generarCupos = (empleados, colorFilaI, click, user) => {
       let separacion = 8;
       let colorI = colorFilaI === 2 ? 1 : 2;
       calDiff = hora !== undefined ? diferencia(hora.i, hora.f) : null;
-      if (hora.i !== "08:00") {
-        initialMargin = diferencia("08:00", hora.i);
+      if (hora.i !== "10:00") {
+        initialMargin = diferencia("10:00", hora.i);
       }
       for (let k = 0; k < calDiff; k++) {
         cuantos.push(
