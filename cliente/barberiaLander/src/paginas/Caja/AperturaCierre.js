@@ -225,11 +225,11 @@ const AperturaCierre = () => {
         cajaState.montoCuponera.value.length > 0
           ? cajaState.montoCuponera.value
           : 0;
-      propina =
+    }
+    propina =
         cajaState.propinaAgenda.value.length > 0
           ? cajaState.propinaAgenda.value
           : 0;
-    }
     let productosVendidos = cajaState.productosAgregados.map((p) => {
       return { idProducto: p.id, cantidad: p.stock };
     });
