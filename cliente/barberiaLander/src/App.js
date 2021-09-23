@@ -10,7 +10,6 @@ import AperturaCierre from "./paginas/Caja/AperturaCierre";
 import CalculoJornal from "./paginas/Caja/CalculoJornal";
 import CrearAgenda from "./paginas/Agenda/CrearAgenda";
 import PreAgendas from "./paginas/Agenda/PreAgendas/PreAgendas";
-import Agendas from "./paginas/Agenda/Agendas/Agendas";
 import VisualAgendas from "./paginas/Agenda/VisualAgendas/VisualAgendas";
 import Registro from "./paginas/Registro/Registro";
 import Login from "./paginas/Login/Login";
@@ -57,9 +56,6 @@ const App = () => {
             </Route>
             <Route path="/agenda/preagendas" exact>
               <PreAgendas />
-            </Route>
-            <Route path="/agenda/agendas" exact>
-              <Agendas />
             </Route>
             <Route path="/registro" exact>
               <Registro/>

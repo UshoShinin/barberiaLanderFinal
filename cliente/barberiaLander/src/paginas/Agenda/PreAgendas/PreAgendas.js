@@ -47,8 +47,8 @@ const PreAgendas = () => {
     fetchAgendas({ url: "/listadoPreAgendas" }, obtenerAgendas)
   };
   const getRespuestaEliminar = (res) => {
-    console.log(res);
     dispatch({type:'SHOW_MENSAJE',value:res.mensaje.mensaje});
+    dispatch({type:'SOLTAR_AGENDA',value:res.mensaje.mensaje});
     fetchAgendas({ url: "/listadoPreAgendas" }, obtenerAgendas)
   };
 
@@ -206,6 +206,8 @@ const PreAgendas = () => {
               <div className={classes.editor}>
                 <Visualizador
                   cliente={esCliente}
+                  agenda = {agendasState.agendaSeleccionada}
+                  setAgenda = {(ag)=>{dispatch({type:'TOMAR_AGENDA',value:ag})}}
                   id={agendasState.agendaId}
                   mostrarAgenda={showAgenda}
                 />

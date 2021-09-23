@@ -6,6 +6,17 @@ export const initialState = {
   agendas: null,
   agendaId: null,
   agendaAModificar: null,
+  agendaSeleccionada : {
+    IdAgenda: -1,
+    servicios: {
+      corte: false,
+      barba: false,
+      maquina: false,
+      claritos: false,
+      decoloracion: false,
+      brushing: false,
+    },
+  },
   Mensaje:{show:false,value:''},
   Modal:{show:false,value:''},
 };
@@ -30,7 +41,6 @@ export const reducer = (state, action) => {
         agendas: [...misAgendas],
       };
     case "GET_AGENDA":
-      console.log(action.agenda);
       const agendita =
         action.agenda != null
           ? {
@@ -42,8 +52,10 @@ export const reducer = (state, action) => {
             }
           : null;
       return { ...state, agendaAModificar: agendita };
-    case 'SELECT_AGENDA':
-      return {...state,}
+    case 'TOMAR_AGENDA':
+      return {...state,agendaSeleccionada:action.value}
+    case 'SOLTAR_AGENDA':
+      return {...state,agendaSeleccionada:{...initialState.agendaSeleccionada}}
     case "SELECT_AGENDA":
       return { ...state, agendaId: action.value };
     case 'SHOW_PREGUNTA':

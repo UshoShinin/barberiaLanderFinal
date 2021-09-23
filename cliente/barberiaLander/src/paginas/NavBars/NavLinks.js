@@ -76,18 +76,6 @@ const NavLinks = (props) => {
               </NavLink>
             </li>
           )}
-        {authCtx.user !== null &&authCtx.user.rol !== "Cliente"&& authCtx.user.rol !== "Empleado"  && (
-            <li>
-              <NavLink
-                onClick={NavOnClick}
-                exact
-                activeClassName={classes.active}
-                to="/agenda/agendas"
-              >
-                <span data="Agendas">Agendas</span>
-              </NavLink>
-            </li>
-          )}
         <li>
           <NavLink
             onClick={NavOnClick}

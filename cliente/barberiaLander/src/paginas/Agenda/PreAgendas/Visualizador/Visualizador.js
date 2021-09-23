@@ -6,18 +6,6 @@ import SimpleButton from "../../../../components/UI/SimpleButton/SimpleButton";
 import Border from "../../../../components/UI/Border/Border";
 const Visualizador = React.memo((props) => {
   const getAgenda = useHttp();
-  const [agenda, setAgenda] = useState({
-    IdAgenda: -1,
-    servicios: {
-      corte: false,
-      barba: false,
-      maquina: false,
-      claritos: false,
-      decoloracion: false,
-      brushing: false,
-    },
-  });
-
   const obtenerAgenda = (respuesta) => {
     let servicios = {
       corte: false,
@@ -57,7 +45,7 @@ const Visualizador = React.memo((props) => {
       fecha: respuesta.mensaje.mensaje.fecha.slice(0, 10),
       servicios: { ...servicios },
     };
-    setAgenda(agendaObtenida);
+    props.setAgenda(agendaObtenida);
   };
   const id = props.id;
   useEffect(() => {
@@ -66,7 +54,7 @@ const Visualizador = React.memo((props) => {
     }
   }, [id, getAgenda]);
   const sendAgendas = () => {
-    props.mostrarAgenda(agenda);
+    props.mostrarAgenda(props.agenda);
   };
   return (
     <>
@@ -75,34 +63,34 @@ const Visualizador = React.memo((props) => {
           <div>
             <h1
               className={`${classes.downData} ${
-                agenda.IdAgenda !== -1 ? classes.activeData : ""
+                props.agenda.IdAgenda !== -1 ? classes.activeData : ""
               }`}
             >
               Servicios
             </h1>
-            <h2 className={`${agenda.servicios.corte ? classes.active : ""}`}>
+            <h2 className={`${props.agenda.servicios.corte ? classes.active : ""}`}>
               Corte
             </h2>
-            <h2 className={`${agenda.servicios.barba ? classes.active : ""}`}>
+            <h2 className={`${props.agenda.servicios.barba ? classes.active : ""}`}>
               Barba
             </h2>
-            <h2 className={`${agenda.servicios.maquina ? classes.active : ""}`}>
+            <h2 className={`${props.agenda.servicios.maquina ? classes.active : ""}`}>
               Maquina
             </h2>
             <h2
-              className={`${agenda.servicios.brushing ? classes.active : ""}`}
+              className={`${props.agenda.servicios.brushing ? classes.active : ""}`}
             >
               Brushing
             </h2>
             <h2
               className={`${
-                agenda.servicios.decoloracion ? classes.active : ""
+                props.agenda.servicios.decoloracion ? classes.active : ""
               }`}
             >
               Decoloración
             </h2>
             <h2
-              className={`${agenda.servicios.claritos ? classes.active : ""}`}
+              className={`${props.agenda.servicios.claritos ? classes.active : ""}`}
             >
               Claritos
             </h2>
@@ -110,7 +98,7 @@ const Visualizador = React.memo((props) => {
           <div>
             <h1
               className={`${classes.downData} ${
-                agenda.IdAgenda !== -1 ? classes.activeData : ""
+                props.agenda.IdAgenda !== -1 ? classes.activeData : ""
               }`}
             >
               Datos Agenda
@@ -118,83 +106,83 @@ const Visualizador = React.memo((props) => {
             <div className={classes.datos}>
               <label
                 className={`${classes.downData} ${
-                  agenda.IdAgenda !== -1 ? classes.activeData : ""
+                  props.agenda.IdAgenda !== -1 ? classes.activeData : ""
                 }`}
               >
                 Nombre Empleado
               </label>
               <label
                 className={`${classes.hide} ${
-                  agenda.IdAgenda !== -1 ? classes.show : ""
+                  props.agenda.IdAgenda !== -1 ? classes.show : ""
                 }`}
               >
-                {agenda.nombreEmpleado}
+                {props.agenda.nombreEmpleado}
               </label>
               <label
                 className={`${classes.downData} ${
-                  agenda.IdAgenda !== -1 ? classes.activeData : ""
+                  props.agenda.IdAgenda !== -1 ? classes.activeData : ""
                 }`}
               >
                 Nombre Cliente
               </label>
               <label
                 className={`${classes.hide} ${
-                  agenda.IdAgenda !== -1 ? classes.show : ""
+                  props.agenda.IdAgenda !== -1 ? classes.show : ""
                 }`}
               >
-                {agenda.nombreCliente}
+                {props.agenda.nombreCliente}
               </label>
               <label
                 className={`${classes.downData} ${
-                  agenda.IdAgenda !== -1 ? classes.activeData : ""
+                  props.agenda.IdAgenda !== -1 ? classes.activeData : ""
                 }`}
               >
                 Fecha
               </label>
               <label
                 className={`${classes.hide} ${
-                  agenda.IdAgenda !== -1 ? classes.show : ""
+                  props.agenda.IdAgenda !== -1 ? classes.show : ""
                 }`}
               >
-                {agenda.fecha}
+                {props.agenda.fecha}
               </label>
               <label
                 className={`${classes.downData} ${
-                  agenda.IdAgenda !== -1 ? classes.activeData : ""
+                  props.agenda.IdAgenda !== -1 ? classes.activeData : ""
                 }`}
               >
                 Hora Inicio
               </label>
               <label
                 className={`${classes.hide} ${
-                  agenda.IdAgenda !== -1 ? classes.show : ""
+                  props.agenda.IdAgenda !== -1 ? classes.show : ""
                 }`}
-              >{`${agenda.IdAgenda !== -1 ? agenda.horario.i : ""}`}</label>
+              >{`${props.agenda.IdAgenda !== -1 ? props.agenda.horario.i : ""}`}</label>
               <label
                 className={`${classes.downData} ${
-                  agenda.IdAgenda !== -1 ? classes.activeData : ""
+                  props.agenda.IdAgenda !== -1 ? classes.activeData : ""
                 }`}
               >
                 Hora Fin
               </label>
               <label
                 className={`${classes.hide} ${
-                  agenda.IdAgenda !== -1 ? classes.show : ""
+                  props.agenda.IdAgenda !== -1 ? classes.show : ""
                 }`}
-              >{`${agenda.IdAgenda !== -1 ? agenda.horario.f : ""}`}</label>
+              >{`${props.agenda.IdAgenda !== -1 ? props.agenda.horario.f : ""}`}</label>
               <label
                 className={`${classes.downData} ${
-                  agenda.IdAgenda !== -1 ? classes.activeData : ""
+                  props.agenda.IdAgenda !== -1 ? classes.activeData : ""
                 }`}
               >
                 Telefono
               </label>
               <label
                 className={`${classes.hide} ${
-                  agenda.IdAgenda !== -1 ? classes.show : ""
+                  props.agenda.IdAgenda !== -1 ? classes.show : ""
                 }`}
               >
-                {agenda.tel}
+                {props.agenda.tel}
               </label>
             </div>
           </div>
@@ -202,7 +190,7 @@ const Visualizador = React.memo((props) => {
         <div className={classes.Descripcion}>
           <h2
             className={`${classes.downData} ${
-              agenda.IdAgenda !== -1 ? classes.activeData : ""
+              props.agenda.IdAgenda !== -1 ? classes.activeData : ""
             }`}
           >
             Descripcion
@@ -210,19 +198,19 @@ const Visualizador = React.memo((props) => {
 
           <p
             className={`${classes.hide} ${
-              agenda.IdAgenda !== -1 ? classes.show : ""
+              props.agenda.IdAgenda !== -1 ? classes.show : ""
             }`}
           >
             {`${
-              agenda.descripcion !== undefined
-                ? agenda.descripcion
+              props.agenda.descripcion !== undefined
+                ? props.agenda.descripcion
                 : "No hay una descripción"
             }`}
           </p>
         </div>
         {!props.cliente && (
           <SimpleButton
-            disabled={agenda.IdAgenda === -1}
+            disabled={props.agenda.IdAgenda === -1}
             active={false}
             action={sendAgendas}
           >
