@@ -444,6 +444,15 @@ app.put("/modificarRolEmpleado", (req, res) => {
   });
 });
 
+app.use("/cajaParaCalculos", (req, res) => {
+  let ret = interfaz.cajaParaCalculos();
+  ret.then((resultado) => {
+    res.json({
+      mensaje: resultado,
+    });
+  });
+});
+
 // All other GET requests not handled before will return our React app
 /* app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, './cliente/barberiaLander/build', 'index.html'));

@@ -1107,6 +1107,30 @@ const agregarIdCaja = async (listado) => {
   return retorno;
 };
 
+//Metodo para devolver una caja al frontend
+const cajaParaCalculos = async () => {
+  return getCaja().then((caja) => {
+    if (caja.rowsAffected[0] < 1) {
+      //Armo el array entero con todo
+      return {
+        caja: { idCaja: -1 },
+      };
+    } else {
+      //Si hay caja entonces me tengo que fijar el monto
+      if (caja.recordset[0].total > 0) {
+        return {
+          caja: { idCaja: -1 },
+        };
+      } else {
+        //Armo el array entero con todo
+        return {
+          caja: caja.recordset[0],
+        };
+      }
+    }
+  });
+};
+
 //Metodo para devolver todos los datos del formulario de caja
 const datosFormularioCaja = async () => {
   try {
@@ -3747,8 +3771,8 @@ const actualizarMontoCaja = async (idCaja, entradas, salidas) => {
     //Verifico si el total de entradas y salidas es 0
     //En caso de que sean 0 los 2, entonces guardo como total -1
     if (entradas === 0 && salidas === 0) {
-      total = -1
-    }else{
+      total = -1;
+    } else {
       //Guardo el total
       total = entradas + salidas;
     }
@@ -4004,9 +4028,9 @@ const modificarRolEmpleado = async (ciEmpleado, rol) => {
       .input("rol", sql.Int, rol)
       .query("update Empleado_Rol set IdRol = @rol where Cedula = @ciEmpleado");
     if (retorno.rowsAffected < 1) {
-      return {codigo: 400, mensaje: "Error al modificar el rol del empleado"}
-    }else{
-      return {codigo: 200, mensaje: "Rol modificado correctamente"}
+      return { codigo: 400, mensaje: "Error al modificar el rol del empleado" };
+    } else {
+      return { codigo: 200, mensaje: "Rol modificado correctamente" };
     }
   } catch (error) {
     console.log(error);
@@ -4055,7 +4079,8 @@ const interfaz = {
   calcularJornal,
   nuevaContra,
   cierreTotal,
-  modificarRolEmpleado
+  modificarRolEmpleado,
+  cajaParaCalculos
 };
 
 //Exporto el objeto interfaz para que el index lo pueda usar
