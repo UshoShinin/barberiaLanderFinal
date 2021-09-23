@@ -363,7 +363,7 @@ app.put("/discontinuarProducto", (req, res) => {
 });
 
 app.use("/comision", (req, res) => {
-  let ret = interfaz.calcularComision(req.body.ciEmpleado, req.body.idCaja);
+  let ret = interfaz.calcularComision(req.body.ciEmpleado);
   ret.then((resultado) => {
     res.json({
       mensaje: resultado,
@@ -372,7 +372,7 @@ app.use("/comision", (req, res) => {
 });
 
 app.use("/propina", (req, res) => {
-  let ret = interfaz.calcularPropina(req.body.ciEmpleado, req.body.idCaja);
+  let ret = interfaz.calcularPropina(req.body.ciEmpleado);
   ret.then((resultado) => {
     res.json({
       mensaje: resultado,
@@ -383,7 +383,6 @@ app.use("/propina", (req, res) => {
 app.use("/jornal", (req, res) => {
   let ret = interfaz.calcularJornal(
     req.body.ciEmpleado,
-    req.body.idCaja,
     req.body.minExtra
   );
   ret.then((resultado) => {
