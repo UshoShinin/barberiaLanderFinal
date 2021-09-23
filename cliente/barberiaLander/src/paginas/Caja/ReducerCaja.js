@@ -1103,6 +1103,7 @@ export const cajaReducer = (state, action) => {
     return { ...myState };
   }
   if (myStateMedios !== null) {
+    console.log(state);
     mEfectivo = mEfectivo !== null ? mEfectivo : state.montoEfectivo.value;
     mDebito = mDebito !== null ? mDebito : state.montoDebito.value;
     mCuponera = mCuponera !== null ? mCuponera : state.montoCuponera.value;
@@ -1110,15 +1111,15 @@ export const cajaReducer = (state, action) => {
       ...state,
       montoEfectivo: {
         value: mEfectivo,
-        isValid: validarMonto(mEfectivo),
+        isValid: state.efectivo.value?validarMonto(mEfectivo):null,
       },
       montoDebito: {
         value: mDebito,
-        isValid: validarMonto(mDebito),
+        isValid: state.debito.value?validarMonto(mDebito):null,
       },
       montoCuponera: {
         value: mCuponera,
-        isValid: validarMonto(mCuponera),
+        isValid: state.cuponera.value?validarMonto(mCuponera):null,
       },
     };
     return { ...myStateMedios };

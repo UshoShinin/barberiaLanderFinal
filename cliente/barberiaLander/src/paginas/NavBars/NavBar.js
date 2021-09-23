@@ -62,67 +62,49 @@ const Navbar = () => {
       respuestaPropina
     );
   }
- 
 
   const calcularJornal = () =>{
-    /* if(!Admin)dispatch({type:'SHOW_MODAL'}); */
+    dispatch({type:'SHOW_MODAL_J'});
+  }
+
+  const callJoranal = () =>{
+    const min = state.Minutos.value;
+    if(min===''){
+      jornal(
+        {
+          url: "/jornal",
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: {ciEmpleado:!Admin?authCtx.user.ciUsuario:state.empleado.value,minExtra:0},
+        },
+        respuestaJornal
+      );
+    }else if(!state.Minutos.isValid)refM.current.focus();
+    else{
+      jornal(
+        {
+          url: "/jornal",
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: {ciEmpleado:!Admin?authCtx.user.ciUsuario:state.empleado.value,minExtra:parseInt(min,10)},
+        },
+        respuestaJornal
+      );
+    }
   }
 
   const respuestaComision = (res) =>{
-    dispatch({type:'SHOW_MENSAJE',value:`${res.mensaje.codigo===200?'El total acumulado en comisiones es de ':''} ${res.mensaje.mensaje}`});
+    dispatch({type:'SHOW_MENSAJE',value:`${res.mensaje.codigo===200?'El total acumulado en comisiones es de $':''} ${Math.round(res.mensaje.mensaje)}`});
   }
   const respuestaPropina = (res) =>{
-    dispatch({type:'SHOW_MENSAJE',value:`${res.mensaje.codigo===200?'El total acumulado en propinas es de ':''} ${res.mensaje.mensaje}`});
+    dispatch({type:'SHOW_MENSAJE',value:`${res.mensaje.codigo===200?'El total acumulado en propinas es de $':''} ${Math.round(res.mensaje.mensaje)}`});
   }
-
-
-  /* const AdminCalC = () =>{
-    comision(
-      {
-        url: "/comision",
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: {ciEmpleado:state.empleado.value,idCaja:state.caja},
-      },
-      respuestaComision
-    );
+  const respuestaJornal = (res) =>{
+    dispatch({type:'SHOW_MENSAJE',value:`${res.mensaje.codigo===200?'El jornal es $':''} ${Math.round(res.mensaje.mensaje)}`});
   }
-  const AdminCalP = () =>{
-    propinas(
-      {
-        url: "/propina",
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: {ciEmpleado:state.empleado.value,idCaja:state.caja},
-      },
-      respuestaPropina
-    );
-  }
-  const AdminCalJ = () =>{
-    jornal(
-      {
-        url: "/joranl",
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: {ciEmpleado:state.empleado.value,idCaja:state.caja},
-      },
-      respuestaPropina
-    );
-  } */
-
   const obtenerEmpleados = (res) => {
     dispatch({type:'CARGAR',payload:res.mensaje.mensaje});
   }
-
-  /* const obtenerEmpleadosC = (res) => {
-    dispatch({type:'CARGAR',payload:res.mensaje.mensaje,destino:{function:AdminCalC,char:'C'}});
-  }
-  const obtenerEmpleadosP = (res) => {
-    dispatch({type:'CARGAR',payload:res.mensaje.mensaje,destino:{function:AdminCalP,char:'P'}});
-  }
-  const obtenerEmpleadosJ = (res) => {
-    dispatch({type:'CARGAR',payload:res.mensaje.mensaje,destino:{function:AdminCalJ,char:'J'}});
-  } */
 
   const [state, dispatch] = useReducer(reducer, initialState);
   const INPUTS = inputs(state,dispatch);
@@ -171,7 +153,7 @@ const Navbar = () => {
       {/* Jornal */}
       <Modal show={state.ModalJ} closed={()=>{dispatch({type:'HIDE_MODAL_J'})}} className={classesCal.modal}>
         <div>
-          <ComboBox 
+          {Admin&&<ComboBox 
           current={state.empleado.value} 
           active={state.empleado.active}
           height={8}
@@ -181,7 +163,7 @@ const Navbar = () => {
           onClick={() => {
             dispatch({ type: "CLICK" });
           }}
-          opciones={state.empleados}/>
+          opciones={state.empleados}/>}
           <form className={classesCal.campos}>
             <label>Minutos extra</label>
             <Input
@@ -190,7 +172,7 @@ const Navbar = () => {
                 input={INPUTS[0]}
               />
           </form>
-          <SimpleButton action={()=>{}}>Calcular joranal</SimpleButton>
+          <SimpleButton action={callJoranal}>Calcular jornal</SimpleButton>
         </div>
       </Modal>
     </Marco>

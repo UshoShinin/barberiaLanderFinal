@@ -39,7 +39,7 @@ export const calcularPrecio = (servicios) => {
 };
 
 export const validarMonto = (value) => {
-  let largo = value.trim().length;
+  let largo = (value === ""||value === 0)?0:value.trim().length;
   if(value === ""||  largo=== 0|| largo > 6) return false;
   for(let i = 0;i<largo;i++){
     if(value.charCodeAt(i)<48||value.charCodeAt(i)>57) return false;
