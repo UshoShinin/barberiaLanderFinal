@@ -98,7 +98,7 @@ const NavLinks = (props) => {
         url: "/comision",
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: {ciEmpleado:state.empleado,idCaja:state.caja},
+        body: {ciEmpleado:state.empleado.value,idCaja:state.caja},
       },
       respuestaComision
     );
@@ -110,7 +110,7 @@ const NavLinks = (props) => {
         url: "/propina",
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: {ciEmpleado:state.empleado,idCaja:state.caja},
+        body: {ciEmpleado:state.empleado.value,idCaja:state.caja},
       },
       respuestaPropina
     );
