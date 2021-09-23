@@ -21,7 +21,7 @@ const Footer = () => {
             <p>Av. Gral. Rivera 2549</p>
       
             <FontAwesomeIcon icon={faEnvelope} className={classes.MyIcon} />
-            <p>helanderignacio @gmail.com</p>
+            <p>barberíalander2549@gmial.com</p>
             <FontAwesomeIcon icon={faClock} className={classes.MyIcon} />
           <p>Lun a Vie 10 a 20hs Sab 10 a 18hs</p>
           <span></span>
