@@ -152,15 +152,19 @@ const NavLinks = (props) => {
             </NavLink>
           </li>
         )}
-        <li>
-          <NavButton onClick={props.calcularComision}>Comisiones</NavButton>
-        </li>
-        <li>
-          <NavButton onClick={props.calcularPropina}>Propinas</NavButton>
-        </li>
-        <li>
-          <NavButton onClick={props.calcularJornal}>Jornal</NavButton>
-        </li>
+        {authCtx.user !== null && authCtx.user.rol !== "Cliente"&&
+        <>
+          <li>
+            <NavButton onClick={props.calcularComision}>Comisiones</NavButton>
+          </li>
+          <li>
+            <NavButton onClick={props.calcularPropina}>Propinas</NavButton>
+          </li>
+          <li>
+            <NavButton onClick={props.calcularJornal}>Jornal</NavButton>
+          </li>
+        </>
+        }
         {isLoggedIn && (
           <li>
             <NavButton onClick={authCtx.logout}>Log Out</NavButton>

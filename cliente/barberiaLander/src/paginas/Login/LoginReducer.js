@@ -1,3 +1,4 @@
+import { validarCedula } from "../../FuncionesAuxiliares/FuncionesAuxiliares";
 export const initialState = {
   ciUsuario: { value: "", isValid: null },
   contra: { value: "", isValid: null },
@@ -15,14 +16,6 @@ export const initialState = {
   ],
 };
 
-const validarCI = (ci) => {
-  const res = parseInt(ci.trim(), 10);
-  if (!isNaN(res)) {
-    const cedula = String(res);
-    return cedula.length > 6 && cedula.length < 9;
-  }
-  return false;
-};
 
 const ordenar = (a, b) => {
   return a.id - b.id;
@@ -86,7 +79,7 @@ export const reducer = (state, action) => {
         },
       };
     case "BLUR_CI_U":
-      valido = validarCI(state.ciUsuario.value);
+      valido = validarCedula(state.ciUsuario.value);
       problemasAux = state.problemas.filter((p) => p.id !== 1);
       if (!valido)
         problemasAux = [

@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef } from "react"
+import { useEffect, useReducer, useRef,useContext } from "react"
 import classes from './Productos.module.css';
 import Border from "../../components/UI/Border/Border"
 import Marco from "../../components/UI/Marco/Marco"
@@ -11,11 +11,15 @@ import LoaddingSpinner from "../../components/LoaddingSpinner/LoaddingSpinner";
 import Checkbox from '../../components/UI/Checkbox/Checkbox';
 import Note from '../../components/UI/Note/Note';
 import inputs from "./inputs";
+import AuthContext from "../../store/AuthContext";
+import { useHistory } from "react-router-dom";
 const Productos = (props) =>{
     const carga = useHttp();
     const crear = useHttp();
     const modificar = useHttp();
     const agregar = useHttp();
+    const authCtx = useContext(AuthContext);
+    const history = useHistory();       
     const [state,dispatch]  = useReducer(reducer,initialState);
     const INPUTS = inputs(state,dispatch);
     const refPN = useRef();
@@ -55,7 +59,8 @@ const Productos = (props) =>{
     }
 
     useEffect(()=>{
-        carga({url:'/listadoProductos'},getRespuesta);
+        if (authCtx.user===null||(authCtx.user.rol!=='Administrador'&&authCtx.user.rol!=='Encargado')) history.replace('/');
+        else carga({url:'/listadoProductos'},getRespuesta);
     },[])
 
     const Modificando = state.producto!==null;

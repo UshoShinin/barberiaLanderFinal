@@ -26,7 +26,6 @@ const Login = (props) => {
   const login = useHttp();
   const reseteoContra = useHttp();
   const getRespuesta = (res) => {
-    console.log(res);
     if (res.mensaje.codigo === 200) {
       authCtx.login(res.mensaje.usuario);
       history.replace('/');

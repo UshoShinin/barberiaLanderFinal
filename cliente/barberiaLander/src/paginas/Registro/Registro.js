@@ -1,5 +1,5 @@
 import Input from "../../components/UI/Input/Input";
-import { useRef, useReducer } from "react";
+import { useRef, useReducer,useContext,useEffect } from "react";
 import inputs from "./inputs";
 import { initialState, reducer } from "./RegistroReducer";
 import classes from "./Registro.module.css";
@@ -8,6 +8,9 @@ import Border from "../../components/UI/Border/Border";
 import NormalCard from "../../components/UI/Card/NormalCard";
 import Button from "../../components/UI/Button/Button";
 import useHttp from "../../hooks/useHttp";
+import AuthContext from "../../store/AuthContext";
+import { useHistory } from "react-router-dom";  
+import Note from "../../components/UI/Note/Note";
 const Registro = (props) => {
   const refCi = useRef();
   const refNom = useRef();
@@ -15,13 +18,19 @@ const Registro = (props) => {
   const refTel = useRef();
   const refCon = useRef();
   const refConR = useRef();
+  const authCtx = useContext(AuthContext);
   const [registroState, dispatchRegistro] = useReducer(reducer, initialState);
   const INPUTS = inputs(registroState, dispatchRegistro);
   const registrarse = useHttp();
-  const getRespuesta = (res)=>{
-    console.log(res);
-  }
+  const history = useHistory();
 
+  const getRespuesta = (res)=>{
+    if(res.mensaje.codigo===200) history.replace('/login');
+    dispatchRegistro({type:'SHOW_MENSAJE',value:res.mensaje.mensaje});
+  }
+  useEffect(()=>{
+    if (authCtx.isLoggedIn) history.replace('/');
+  },[])
   const submitHandler = (e) => {
     e.preventDefault();
     if (!registroState.ciUsuario.isValid) refCi.current.focus();
@@ -51,6 +60,7 @@ const Registro = (props) => {
   };
   return (
     <Marco use={true} className={classes.alinear}>
+      <Note show={registroState.Mensaje.show} onClose={()=>{dispatchRegistro({type:'HIDE_MENSAJE'})}}>{registroState.Mensaje.text}</Note>
       <form onSubmit={submitHandler}>
         <NormalCard className={classes.container}>
           <Border>

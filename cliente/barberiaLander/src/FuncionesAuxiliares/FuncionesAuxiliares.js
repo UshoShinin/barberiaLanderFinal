@@ -46,10 +46,33 @@ export const validarMonto = (value) => {
   }
   return parseInt(value,10) > 0;
 };
-export const validarMontoPermitirNulos = (value) => {
 
+export const validarMontoPermitirNulos = (value) => {
   return ((value !== ""&&value!==0 ? value.trim().length > 0 : null) && parseInt(value) >= 0);
 };
+
+export const validarCedula = (value,ex) =>{
+  let ced = value.trim();
+  if (ex !== undefined && ced) return null;
+  if(ced===''||ced.length<7 || ced.length>8) return false;
+  for(let i = 0;i<ced.length;i++){
+    if(ced.charCodeAt(i)<48||ced.charCodeAt(i)>57) return false;
+  }
+  let total = 0;
+  let aux;
+  let multiplos;
+  let ultimo = ced.slice(-1);
+  ced = ced.slice(0,-1);
+  if(ced.length===7)multiplos = [2,9,8,7,6,3,4];
+  else multiplos = [9,8,7,6,3,4];
+  for(let i = 0;i<ced.length;i++){
+    let num = ced.charAt(i) * multiplos[i]
+    total += num;
+  }
+  aux = total % 10;
+  total = 10 -aux;
+  return ultimo === String(total);
+}
 
 /* Este metodo está obtener el equivalente en el state de un id de empleado */
 export const getElementById = (list, id) => {

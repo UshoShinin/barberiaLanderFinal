@@ -884,13 +884,10 @@ const AperturaCierre = () => {
                     <SimpleButton
                       disabled={!cajaState.cajaAbierta}
                       action={() => {
-                        dispatchCaja({
-                          type: "AGREGAR",
-                          value:
-                            cajaState.montoProductos.value !== ""
-                              ? cajaState.montoProductos.value
-                              : 1,
-                        });
+                        const monto = cajaState.montoProductos.value;
+                        if(monto==='')dispatchCaja({type: "AGREGAR",value:1});
+                        else if(!cajaState.montoProductos.isValid) montoProductoRef.current.focus();
+                        else dispatchCaja({type: "AGREGAR",value:monto});
                       }}
                     >
                       +
@@ -901,13 +898,10 @@ const AperturaCierre = () => {
                       disabled={!cajaState.cajaAbierta}
                       color="red"
                       action={() => {
-                        dispatchCaja({
-                          type: "QUITAR",
-                          value:
-                            cajaState.montoProductos.value !== ""
-                              ? cajaState.montoProductos.value
-                              : 1,
-                        });
+                        const monto = cajaState.montoProductos.value;
+                        if(monto==='')dispatchCaja({type: "QUITAR",value:1});
+                        else if(!cajaState.montoProductos.isValid) montoProductoRef.current.focus();
+                        else dispatchCaja({type: "QUITAR",value:monto});
                       }}
                     >
                       -

@@ -1,3 +1,4 @@
+import { validarMonto,validarCedula } from "../../FuncionesAuxiliares/FuncionesAuxiliares";
 export const initialState = {
   idCaja: -1,
   active: false,
@@ -44,24 +45,8 @@ export const initialState = {
   Mensaje: { show: false, text: "" },
 };
 
-const validarCI = (ci, execpcion) => {
-  if (execpcion !== undefined && ci.trim() === "") return null;
-  const res = parseInt(ci.trim(), 10);
-  if (!isNaN(res)) {
-    const cedula = String(res);
-    return cedula.length > 6 && cedula.length < 9;
-  }
-  return false;
-};
-
 const ordenar = (a, b) => {
   return a.id - b.id;
-};
-
-const validarMonto = (value) => {
-  return (
-    (value !== "" ? value.trim().length > 0 : null) && parseInt(value, 10) >= 0
-  );
 };
 
 const validarMontoEspecial = (value) => {
@@ -109,7 +94,7 @@ export const reducer = (state, action) => {
         },
       };
     case "CREAR_CI_B":
-      valido = validarCI(state.Crear.cedula.value);
+      valido = validarCedula(state.Crear.cedula.value);
       problemasAux = state.Crear.problemas.filter((p) => p.id !== 1);
       if (!valido)
         problemasAux = [
@@ -236,7 +221,7 @@ export const reducer = (state, action) => {
         },
       };
     case "AGREGAR_CI_B":
-      valido = validarCI(state.Agregar.cedula.value);
+      valido = validarCedula(state.Agregar.cedula.value);
       problemasAux = state.Agregar.problemas.filter((p) => p.id !== 1);
       if (!valido)
         problemasAux = [
@@ -366,7 +351,7 @@ export const reducer = (state, action) => {
         },
       };
     case "MODIFICAR_CI_A_B":
-      valido = validarCI(state.Modificar.cedulaAnterior.value);
+      valido = validarCedula(state.Modificar.cedulaAnterior.value);
       problemasAux = state.Modificar.problemas.filter((p) => p.id !== 1);
       if (!valido)
         problemasAux = [
@@ -429,7 +414,7 @@ export const reducer = (state, action) => {
         },
       };
     case "MODIFICAR_CI_N_B":
-      valido = validarCI(state.Modificar.cedulaNueva.value, "Si");
+      valido = validarCedula(state.Modificar.cedulaNueva.value, "Si");
       problemasAux = state.Modificar.problemas.filter((p) => p.id !== 2);
       if (valido === false)
         problemasAux = [
@@ -563,7 +548,7 @@ export const reducer = (state, action) => {
         },
       };
     case "CONSULTAR_CI_B":
-      valido = validarCI(state.Consultar.cedula.value);
+      valido = validarCedula(state.Consultar.cedula.value);
       problemasAux = state.Consultar.problemas.filter((p) => p.id !== 1);
       if (!valido)
         problemasAux = [

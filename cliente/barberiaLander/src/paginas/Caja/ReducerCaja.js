@@ -1,6 +1,7 @@
 import {
   calcularPrecio,
   getElementById,
+  validarCedula,
 } from "../../FuncionesAuxiliares/FuncionesAuxiliares";
 import { formatDate } from "../../FuncionesAuxiliares/FuncionesAuxiliares";
 import { resetAgendaProductos } from "./AuxiliaresCaja/reseteos";
@@ -946,7 +947,7 @@ export const cajaReducer = (state, action) => {
         },
       };
     case "BLUR_COD_CUPONERA":
-      valido = validarMonto(state.codCuponera.value);
+      valido = validarCedula(state.codCuponera.value);
       return {
         ...state,
         codCuponera: {
