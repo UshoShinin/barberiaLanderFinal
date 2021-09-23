@@ -69,10 +69,10 @@ const Navbar = () => {
   }
 
   const respuestaComision = (res) =>{
-    dispatch({type:'SHOW_MENSAJE',value:res.mensaje.codigo===200?'El total acumulado en comisiones es de ':'' + res.mensaje.mensaje});
+    dispatch({type:'SHOW_MENSAJE',value:`${res.mensaje.codigo===200?'El total acumulado en comisiones es de ':''} ${res.mensaje.mensaje}`});
   }
   const respuestaPropina = (res) =>{
-    dispatch({type:'SHOW_MENSAJE',value:res.mensaje.codigo===200?'El total acumulado en propinas es de ':'' + res.mensaje.mensaje});
+    dispatch({type:'SHOW_MENSAJE',value:`${res.mensaje.codigo===200?'El total acumulado en propinas es de ':''} ${res.mensaje.mensaje}`});
   }
 
 

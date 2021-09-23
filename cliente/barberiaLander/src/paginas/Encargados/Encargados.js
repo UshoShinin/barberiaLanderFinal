@@ -15,7 +15,8 @@ const initialState = {
 const reducer = (state, action) => {
   switch (action.type) {
     case "CARGAR":
-      return { ...state, empleados: [...action.payload],empleado: { value:state.empleado.value===null?action.payload[0].id:state.empleado.value,active: false } };
+      let empas =action.payload.filter( e => e.id!=='48279578');
+      return { ...state, empleados: [...empas],empleado: { value:state.empleado.value===null?empas[0].id:state.empleado.value,active: false } };
     case "CLICK":
       return {
         ...state,
@@ -41,24 +42,23 @@ const Encargados = () => {
   const getRespuesta = (res) => {
     getEmpleados({ url: "/listadoHabilitarEmpleados" }, obtenerEmpleados);
   };
-/*   const rol = getElementById(state.empleados, state.empleado.value);
-  console.log(rol); */
-  const habilitado = true;
+  const rol = state.empleados!==null?getElementById(state.empleados, state.empleado.value).idRol:null;
   const clickHandler = () => {
-    let nuevoEstado = habilitado ? 0 : 1;
+    let nuevoEstado = rol===2 ? 3 : 2;
     const data = {
       ciEmpleado: state.empleado.value,
-      habilitado: nuevoEstado,
+      rol: nuevoEstado,
     };
-    /* cambiarEstadoEmpleado(
+    console.log(data);
+    cambiarEstadoEmpleado(
       {
         url: "/modificarRolEmpleado",
-        method: "POST",
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: data,
       },
       getRespuesta
-    ); */
+    );
   };
 
   useEffect(() => {
@@ -88,9 +88,9 @@ const Encargados = () => {
         />
         <SimpleButton
           action={clickHandler}
-          color={`${habilitado ? "red" : ""}`}
+          color={`${rol===3 ? "red" : ""}`}
           disabled={state.empleado.value === null}
-        >{`${habilitado ? "Deshabilitar" : "Habilitar"}`}</SimpleButton>
+        >{`${rol===2 ? "Dar permisos" : "Quitar permisos"}`}</SimpleButton>
       </form>
     </Modal>
   );
