@@ -1332,7 +1332,7 @@ const registrarCliente = async (nuevoCliente) => {
     const resultado = existeCliente(nuevoCliente.ciUsuario)
       .then((existe) => {
         if (existe) {
-          return { seInserto: false, error: "El cliente ya existe" };
+          return { codigo: 400, mensaje: "El cliente ya existe" };
         } else {
           return insertarCliente(nuevoCliente);
         }
@@ -1362,9 +1362,9 @@ const insertarCliente = async (nuevoCliente) => {
         "insert into Cliente (Cedula, Nombre, Contra, Tel) values (@ciUsuario, @nombre, @contra, @telefono)"
       );
     if (insertCliente.rowsAffected[0] === 1) {
-      return { seInserto: true, error: "" };
+      return { codigo: 200 };
     } else {
-      return { seInserto: false, error: "Algo paso que no pudimos" };
+      return { codigo: 400, mensaje: "Error al registrar cliente" };
     }
   } catch (error) {
     console.log(error);
