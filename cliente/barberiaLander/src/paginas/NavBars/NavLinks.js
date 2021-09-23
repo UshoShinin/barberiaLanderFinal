@@ -1,149 +1,17 @@
 import classes from "./NavBar.module.css";
-import classesCal from "./NavLinks.module.css";
 import { NavLink } from "react-router-dom";
-import { useContext, useReducer,useRef } from "react";
+import { useContext, useReducer } from "react";
 import AuthContext from "../../store/AuthContext";
 import Menu from "./Menu/Menu";
 import NavButton from "./NavButton/NavButton";
 import LogoAzulH from "../../recursos/LogoChiquitoAzulHerramientas.png";
 import Logo from './Logo/Logo';
-import Marco from "../../components/UI/Marco/Marco";
-import Note from "../../components/UI/Note/Note";
-import { initialState,reducer } from "./reducer";
-import inputs from "./inputs";
-import useHttp from "../../hooks/useHttp";
-import { comparaFechas } from "../../FuncionesAuxiliares/FuncionesAuxiliares";
-import Modal from "../../components/UI/Modal/Modal";
-import ComboBox from "../../components/ComboBox/ComboBox";
-import SimpleButton from "../../components/UI/SimpleButton/SimpleButton";
-import Input from "../../components/UI/Input/Input";
-
+import { initialState,reducer } from "./reducerLinks";
 const NavLinks = (props) => {
   const authCtx = useContext(AuthContext);
   const isLoggedIn = authCtx.isLoggedIn;
   const mobile = document.getElementById('root').clientWidth<990;
-  const refM = useRef();
-  const pedirCaja = useHttp()
-  const comision = useHttp()
-  const propinas = useHttp()
-  const jornal = useHttp()
-  const empleados = useHttp();
-
-
   const Admin = authCtx.user!==null &&authCtx.user.rol==='Administrador';
-
-  const calcularComision = () =>{
-    pedirCaja({url:'/cajaParaCalculos'},callComision);
-  }
-  const calcularPropina = () =>{
-    pedirCaja({url:'/cajaParaCalculos'},callPropinas);
-  }
-  
-  const calcularJornal = () =>{
-    if(!Admin)dispatch({type:'SHOW_MODAL'});
-    else empleados({url:'/listadoHabilitarEmpleados'},obtenerEmpleadosJ);
-  }
-
-  const respuestaComision = (res) =>{
-    dispatch({type:'SHOW_MENSAJE',value:'El total acumulado en comisiones es de ' + res.mensaje.mensaje});
-  }
-  const respuestaPropina = (res) =>{
-    console.log(res);
-    dispatch({type:'SHOW_MENSAJE',value:'El total acumulado en propinas es de ' + res.mensaje.mensaje});
-  }
-
-  const callComision = (res) =>{
-    const date = new Date();
-    const caja = res.mensaje;
-    if(caja.idCaja===-1) dispatch({type:'SHOW_MENSAJE',value:'La caja aun no está abierta'});
-    else if(comparaFechas(date.getDate(),date.getMonth()+1,date.getFullYear(),caja.caja.fecha.substring(0,10))) dispatch({type:'SHOW_MENSAJE',value:'Hay una caja pendiente de una fecha pasada'});
-    else{
-      if(Admin){
-        dispatch({type:'GUARDAR_CAJA',value:caja.caja.idCaja});
-        empleados({url:'/listadoHabilitarEmpleados'},obtenerEmpleadosC);
-      }else{
-        comision(
-          {
-            url: "/comision",
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: {ciEmpleado:authCtx.user.ciUsuario,idCaja:caja.caja.idCaja},
-          },
-          respuestaComision
-        );
-      }
-    }
-  }
-
-  const callPropinas = (res) =>{
-    const date = new Date();
-    const caja = res.mensaje;
-    if(caja.idCaja===-1) dispatch({type:'SHOW_MENSAJE',value:'La caja aun no está abierta'});
-    else if(comparaFechas(date.getDate(),date.getMonth()+1,date.getFullYear(),caja.caja.fecha.substring(0,10))) dispatch({type:'SHOW_MENSAJE',value:'Hay una caja pendiente de una fecha pasada'});
-    else{
-      if(Admin){
-        dispatch({type:'GUARDAR_CAJA',value:caja.caja.idCaja});
-        empleados({url:'/listadoHabilitarEmpleados'},obtenerEmpleadosP);
-      }else{
-        comision(
-          {
-            url: "/propina",
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: {ciEmpleado:authCtx.user.ciUsuario,idCaja:caja.caja.idCaja},
-          },
-          respuestaPropina
-        );
-      }
-    }
-  }
-
-  const AdminCalC = () =>{
-    comision(
-      {
-        url: "/comision",
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: {ciEmpleado:state.empleado.value,idCaja:state.caja},
-      },
-      respuestaComision
-    );
-  }
-
-  const AdminCalP = () =>{
-    propinas(
-      {
-        url: "/propina",
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: {ciEmpleado:state.empleado.value,idCaja:state.caja},
-      },
-      respuestaPropina
-    );
-  }
-
-  const AdminCalJ = () =>{
-    jornal(
-      {
-        url: "/joranl",
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: {ciEmpleado:state.empleado.value,idCaja:state.caja},
-      },
-      respuestaPropina
-    );
-  }
-
-  const obtenerEmpleadosC = (res) => {
-    dispatch({type:'CARGAR',payload:res.mensaje.mensaje,destino:{function:AdminCalC,char:'C'}});
-  }
-  const obtenerEmpleadosP = (res) => {
-    dispatch({type:'CARGAR',payload:res.mensaje.mensaje,destino:{function:AdminCalP,char:'P'}});
-  }
-  const obtenerEmpleadosJ = (res) => {
-    dispatch({type:'CARGAR',payload:res.mensaje.mensaje,destino:{function:AdminCalJ,char:'J'}});
-  }
-
   const [state, dispatch] = useReducer(reducer, initialState);
   const Menus = [
     {
@@ -152,13 +20,12 @@ const NavLinks = (props) => {
       opciones: [
         { id: 1, text: "Cuponera", to: "/cuponeras" },
         { id: 2, text: "Empleados", to: "/empleados" },
-        { id: 3, text: "Encargado", to: "/encargado" },
+        { id: 3, text: "Encargados", to: "/encargados" },
         { id: 4, text: "Reseteo contraseña", to: "/reseteo" },
         { id: 5, text: "Productos", to: "/productos" },
       ],
     },
   ];
-  const INPUTS = inputs(state,dispatch);
   const NavOnClick = () => {
     if (props.onClick !== null) {
       props.onClick();
@@ -167,33 +34,6 @@ const NavLinks = (props) => {
   };
   return (
     <>
-    <Marco>
-      <Note show={state.Mensaje.show} onClose={()=>{dispatch({type:'HIDE_MENSAJE'})}}>{state.Mensaje.text}</Note>
-      <Modal show={state.Modal} closed={()=>{dispatch({type:'HIDE_MODAL'})}} className={classesCal.modal}>
-        <div>
-          <ComboBox 
-          current={state.empleado.value} 
-          active={state.empleado.active}
-          height={8}
-          onChange={(id) => {
-            dispatch({ type: "SELECT", value: id });
-          }}
-          onClick={() => {
-            dispatch({ type: "CLICK" });
-          }}
-          opciones={state.empleados}/>
-          <form className={classesCal.campos}>
-            <label>Minutos extra</label>
-            <Input
-                ref={refM}
-                isValid={state.Minutos.isValid}
-                input={INPUTS[0]}
-              />
-          </form>
-          <SimpleButton action={state.destino.function}>{`Calcular ${state.destino.char==='C'?'comisione':'propinas'}`}</SimpleButton>
-        </div>
-      </Modal>
-    </Marco>
       <ul className={classes.navbarUl}>
         {!mobile&&<li className={classes.Logo}>
           <img className={classes.base} src={LogoAzulH} />
@@ -313,13 +153,13 @@ const NavLinks = (props) => {
           </li>
         )}
         <li>
-          <NavButton onClick={calcularComision}>Comisiones</NavButton>
+          <NavButton onClick={props.calcularComision}>Comisiones</NavButton>
         </li>
         <li>
-          <NavButton onClick={calcularPropina}>Propinas</NavButton>
+          <NavButton onClick={props.calcularPropina}>Propinas</NavButton>
         </li>
         <li>
-          <NavButton onClick={calcularJornal}>Jornal</NavButton>
+          <NavButton onClick={props.calcularJornal}>Jornal</NavButton>
         </li>
         {isLoggedIn && (
           <li>

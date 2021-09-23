@@ -1,8 +1,9 @@
 import { validarMonto } from "../../FuncionesAuxiliares/FuncionesAuxiliares";
 export const initialState = {
-     place: -1, active: -1,
      Mensaje:{show:false,text:''},
-     Modal:false,
+     ModalC:false,
+     ModalP:false,
+     ModalJ:false,
      Minutos:{value:'',isValid:null},
      problema:'',
      empleados:null,
@@ -13,15 +14,6 @@ export const initialState = {
 export const reducer = (state, action) => {
     let valido = false;
   switch (action.type) {
-    case "RESET":
-      return {...state, place: -1, active: -1 };
-    case "CHANGE_PLACE":
-      return {...state, place: action.value, active: -1 };
-    case "CHANGE_ACTIVE":
-      return {...state,
-        place: -1,
-        active: state.active === action.value ? -1 : action.value,
-      };
     case 'CARGAR':
         let empas =action.payload.filter( e => e.id!=='48279578');
         return {...state,empleados:[...empas],empleado:{value:empas[0].id,active:false},Modal:true,destino:action.destino}
@@ -50,10 +42,20 @@ export const reducer = (state, action) => {
         return { ...state, Mensaje: { show: true, text: action.value } };
     case "HIDE_MENSAJE":
         return { ...state, Mensaje: { ...state.Mensaje, show: false } };
-    case 'SHOW_MODAL':
-        return{...state,Modal:true,destino:action.destino};
-    case "HIDE_MODAL":
-        return { ...state, Modal: false };
+    case 'SHOW_MODAL_C':
+        return{...state,ModalC:true, ModalP: false, ModalJ: false};
+    case "HIDE_MODAL_C":
+        return { ...state, ModalC: false };
+
+    case 'SHOW_MODAL_P':
+        return{...state,ModalC:false, ModalP: true, ModalJ: false};
+    case "HIDE_MODAL_P":
+        return { ...state, ModalP: false };
+
+    case 'SHOW_MODAL_J':
+        return{...state,ModalC:false, ModalP: false, ModalJ: true};
+    case "HIDE_MODAL_J":
+        return { ...state, ModalJ: false };
     case "GUARDAR_CAJA":
         return { ...state, caja: action.value };
     default:

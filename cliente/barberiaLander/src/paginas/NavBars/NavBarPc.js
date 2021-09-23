@@ -3,7 +3,7 @@ import classes from './NavBar.module.css';
 const NavBarPc = (props) => {
   return (
     <nav className={classes.navPc}>
-      <NavLinks onClick={null}/>
+      <NavLinks calcularComision = {props.calcularComision} calcularPropina={props.calcularPropina} calcularJornal={props.calcularJornal} onClick={null}/>
     </nav>
   );
 };

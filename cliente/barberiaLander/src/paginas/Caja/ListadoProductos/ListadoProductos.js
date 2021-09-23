@@ -26,7 +26,7 @@ const ListadoProductos = (props) => {
         }
       >
         {p.nombre}{" "}
-        {`${p.stock !== undefined && p.stock > 1 ? " X " + p.stock : ""}`}
+        {`${p.stock !== undefined && " X " + p.stock}`}
       </li>
     );
   });

@@ -64,7 +64,7 @@ const VisualAgendas = () => {
   const tamaño = document.getElementById("root").clientWidth;
   if (tamaño < 581) {
     cantidadMostrar = 1;
-  } else if (tamaño < 801) {
+  } else if (tamaño < 980) {
     cantidadMostrar = 2;
   } else {
     cantidadMostrar = 4;

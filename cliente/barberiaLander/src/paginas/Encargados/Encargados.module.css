@@ -1,0 +1,26 @@
+.form{
+    padding: 40px;
+    position: relative;
+    justify-content: center;
+    display: flex;
+    height: 180px;
+}
+.form > div{
+    height: 3em;
+    margin-bottom:1em ;
+}
+
+.form > button{
+    position:absolute;
+    bottom: 4px;
+}
+
+@media (max-width:900px) {  
+    .form{
+        padding: 45px 0 0 0;
+        position: relative;
+        justify-content: center;
+        display: flex;
+        height: 140px;
+    }
+}

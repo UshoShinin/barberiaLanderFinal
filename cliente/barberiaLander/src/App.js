@@ -5,6 +5,7 @@ import "./App.css";
 import Inicio from "./paginas/Inicio/Inicio";
 import Cuponeras from "./paginas/Cuponera/Cuponeras";
 import Empleados from "./paginas/Empleados/Empleados";
+import Encargados from "./paginas/Encargados/Encargados";
 import AperturaCierre from "./paginas/Caja/AperturaCierre";
 import CalculoJornal from "./paginas/Caja/CalculoJornal";
 import CrearAgenda from "./paginas/Agenda/CrearAgenda";
@@ -73,6 +74,9 @@ const App = () => {
             </Route>
             <Route path="/productos" exact>
               <Productos />
+            </Route>
+            <Route path="/encargados" exact>
+              <Encargados />
             </Route>
             <Route path="*">
               <NoEncontrado />
