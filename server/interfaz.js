@@ -3263,29 +3263,41 @@ const discontinuarProducto = async (idProducto, discontinuar) => {
 //Metodo para calcular las propinas hasta el momento de un empleado
 const calcularPropina = async (ciEmpleado, idCaja) => {
   try {
-    //Creo la conexion
-    let pool = await sql.connect(conexion);
-    //Hago el select
-    const propinas = await pool
-      .request()
-      .input("idCaja", sql.Int, idCaja)
-      .input("ciEmpleado", sql.VarChar, ciEmpleado)
-      .query(
-        "select SUM(E.Propina) as totalPropinas from EntradaDinero E, Empleado EP, Caja_Entrada C where E.Cedula = EP.Cedula and C.IdEntrada = E.IdEntrada and E.Cedula = @ciEmpleado and C.IdCaja = @idCaja"
-      );
-    if (propinas.rowsAffected[0] < 1) {
-      return { codigo: 400, mensaje: "Error al ir a buscar las propinas" };
+    //Voy a buscar la caja para usarla
+    const caja = await getCaja();
+    if (caja.rowsAffected[0] < 1) {
+      return { codigo: 400, mensaje: "No hay caja abierta" };
     } else {
-      
-      //Verifico que la propina no sea null
-      let propina = 0
-      if (propinas.recordset[0].totalPropinas !== null) {
-        propina = propinas.recordset[0].totalPropinas
+      if (caja.recordset[0].total !== 0) {
+        return {
+          codigo: 400,
+          mensaje: "No hay caja abierta, debe abrir la caja primero",
+        };
+      } else {
+        //Creo la conexion
+        let pool = await sql.connect(conexion);
+        //Hago el select
+        const propinas = await pool
+          .request()
+          .input("idCaja", sql.Int, caja.recordset[0].idCaja)
+          .input("ciEmpleado", sql.VarChar, ciEmpleado)
+          .query(
+            "select SUM(E.Propina) as totalPropinas from EntradaDinero E, Empleado EP, Caja_Entrada C where E.Cedula = EP.Cedula and C.IdEntrada = E.IdEntrada and E.Cedula = @ciEmpleado and C.IdCaja = @idCaja"
+          );
+        if (propinas.rowsAffected[0] < 1) {
+          return { codigo: 400, mensaje: "Error al ir a buscar las propinas" };
+        } else {
+          //Verifico que la propina no sea null
+          let propina = 0;
+          if (propinas.recordset[0].totalPropinas !== null) {
+            propina = propinas.recordset[0].totalPropinas;
+          }
+          return {
+            codigo: 200,
+            mensaje: propina,
+          };
+        }
       }
-      return {
-        codigo: 200,
-        mensaje: propina,
-      };
     }
   } catch (error) {
     console.log(error);
@@ -4086,7 +4098,7 @@ const interfaz = {
   nuevaContra,
   cierreTotal,
   modificarRolEmpleado,
-  cajaParaCalculos
+  cajaParaCalculos,
 };
 
 //Exporto el objeto interfaz para que el index lo pueda usar
