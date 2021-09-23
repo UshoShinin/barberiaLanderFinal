@@ -99,6 +99,8 @@ export const cajaReducer = (state, action) => {
   let cajaAbierta;
   let newList;
   switch (action.type) {
+    case 'CIERRE_TOTAL':
+      return { ...state, modalCierre: false, seguridadCierre: false,cajaInvalida:false};
     case "SHOW_MENSAJE":
       return { ...state, Mensaje: { show: true, value: action.value } };
     case "HIDE_MENSAJE":

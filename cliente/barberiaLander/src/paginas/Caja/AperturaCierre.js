@@ -186,9 +186,8 @@ const AperturaCierre = () => {
   };
 
   const cierreTotalRespuesta = (res) => {
+    dispatchCaja({type:'CIERRE_TOTAL'});
     fetchAgendas({ url: "/datosFormularioCaja" }, obtenerAgendasAbrir);
-    dispatchCaja({ type: "HIDE_MODAL" });
-    dispatchCaja({ type: "HIDE_SEGURIDAD_CIERRE" });
   };
 
   const miFiltro = (lista, objeto) => {

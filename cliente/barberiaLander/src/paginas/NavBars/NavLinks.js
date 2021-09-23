@@ -148,7 +148,7 @@ const NavLinks = (props) => {
     <>
     <Marco>
       <Note show={state.Mensaje.show} onClose={()=>{dispatch({type:'HIDE_MENSAJE'})}}>{state.Mensaje.text}</Note>
-      <Modal show={state.Modal} className={classesCal.modal}>
+      <Modal show={state.Modal} closed={()=>{dispatch({type:'HIDE_MODAL'})}} className={classesCal.modal}>
         <div>
           <ComboBox 
           current={state.empleado.value} 
@@ -161,7 +161,7 @@ const NavLinks = (props) => {
             dispatch({ type: "CLICK" });
           }}
           opciones={state.empleados}/>
-          <SimpleButton action={state.destino.function}>Calcular</SimpleButton>
+          <SimpleButton action={state.destino.function}>{`Calcular ${state.destino.char==='C'?'comisione':'propinas'}`}</SimpleButton>
         </div>
       </Modal>
     </Marco>
