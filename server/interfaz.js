@@ -512,6 +512,55 @@ const getPreAgendas = async () => {
   return ret;
 };
 
+//Conseguir datos de todas las  agendas
+const getAgendas = async () => {
+  //Variable donde esta la conexion con la bd
+  const pool = await sql.connect(conexion);
+  //Aca guardo el resultado de la consulta a la bd
+  const consultaPreAgendas = await pool
+    .request()
+    .query(
+      "select A.IdAgenda, H.Fecha, A.NombreCliente, H.HoraInicio, H.HoraFin, A.Descripcion, H.Cedula, E.Nombre, A.IdHorario from Agenda A, Horario H, Empleado E where A.IdHorario = H.IdHorario and A.Aceptada = 1 and H.Cedula = E.Cedula"
+    );
+  //Separo las preagendas de los resultados de la consulta
+  const preAgendas = consultaPreAgendas.recordset;
+  //Creo objeto de retorno
+  let ret = {
+    preAgendas: [],
+  };
+  //Recorro las preagendas y las agrego al array de retorno
+  for (let i = 0; i < preAgendas.length; i++) {
+    //Creo la preagenda que agrego al array de retorno
+    let preAgendaAux = {
+      idAgenda: preAgendas[i].IdAgenda,
+      idHorario: preAgendas[i].IdHorario,
+      ciEmpleado: preAgendas[i].Cedula,
+      nombreEmpleado: preAgendas[i].Nombre,
+      fecha: preAgendas[i].Fecha,
+      nombreCliente: preAgendas[i].NombreCliente,
+      horaInicio: preAgendas[i].HoraInicio,
+      horaFin: preAgendas[i].HoraFin,
+      descripcion: preAgendas[i].Descripcion,
+    };
+    //Empujo la preagenda al array de retorno
+    ret.preAgendas.push(preAgendaAux);
+  }
+  return ret;
+};
+
+//Metodo para devolver los datos para el listado de preagendas
+const datosListadoAgendas = async () => {
+  try {
+    return getAgendas()
+      .then((listado) => {
+        return agregarManejoAgendas(listado);
+      })
+      .then((listadoAgendas) => listadoAgendas);
+  } catch (error) {
+    console.log();
+  }
+};
+
 //Metodo para devolver los datos para el listado de preagendas
 const datosListadoPreagendas = async () => {
   try {
@@ -4126,6 +4175,7 @@ const interfaz = {
   cierreTotal,
   modificarRolEmpleado,
   cajaParaCalculos,
+  datosListadoAgendas
 };
 
 //Exporto el objeto interfaz para que el index lo pueda usar

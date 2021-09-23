@@ -54,6 +54,15 @@ app.use("/listadoPreAgendas", (req, res) => {
   });
 });
 
+app.use("/listadoAgendasAceptadas", (req, res) => {
+  let ret = interfaz.datosListadoAgendas();
+  ret.then((resultado) => {
+    res.json({
+      mensaje: resultado,
+    });
+  });
+});
+
 app.use("/agendaPorId", (req, res) => {
   //Traer también el nombre del empleado
   let id = req.query.idAgenda;
