@@ -50,6 +50,8 @@ export const reducer = (state, action) => {
         return { ...state, Mensaje: { show: true, text: action.value } };
     case "HIDE_MENSAJE":
         return { ...state, Mensaje: { ...state.Mensaje, show: false } };
+    case 'SHOW_MODAL':
+        return{...state,Modal:true,destino:action.destino};
     case "HIDE_MODAL":
         return { ...state, Modal: false };
     case "GUARDAR_CAJA":

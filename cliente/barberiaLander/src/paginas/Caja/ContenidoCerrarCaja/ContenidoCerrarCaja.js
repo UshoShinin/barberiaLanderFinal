@@ -3,7 +3,6 @@ import classes from "./ContenidoCerrarCaja.module.css";
 const ContenidoCerrarCaja = (props) => {
   const entradas =props.Cierre.entradas;
   const salidas = props.Cierre.salidas;
-  console.log(salidas);
   const sinSalidas = salidas.length===1;
   let misSalidas;
   let salida;

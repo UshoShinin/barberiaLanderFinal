@@ -163,6 +163,7 @@ const AperturaCierre = () => {
     const date = new Date();
     const caja = mensaje.mensaje.caja;
     const fechita =  caja.fecha.substring(0,10)
+    console.log(mensaje);
     if(comparaFechas(date.getDate(),date.getUTCMonth()+1,date.getFullYear(),fechita)){
       cierreCaja(
       { url: "/cierreCaja?idCaja=" + caja.idCaja },

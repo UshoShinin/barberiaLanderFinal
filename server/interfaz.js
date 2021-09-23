@@ -1090,7 +1090,7 @@ const agregarIdCaja = async (listado) => {
       };
     } else {
       //Si hay caja entonces me tengo que fijar el monto
-      if (caja.recordset[0].total > 0) {
+      if (caja.recordset[0].total !== 0) {
         return {
           ...listado,
           caja: { idCaja: -1 },
@@ -1855,7 +1855,7 @@ const getCaja = async () => {
     const caja = await pool
       .request()
       .query(
-        "select top 1 IdCaja as idCaja, Fecha as fecha, Total as total from Caja C order by Fecha desc, total"
+        "select top 1 IdCaja as idCaja, Fecha as fecha, Total as total from Caja C where Total <> -1 order by Fecha desc, total"
       );
     return caja;
   } catch (error) {

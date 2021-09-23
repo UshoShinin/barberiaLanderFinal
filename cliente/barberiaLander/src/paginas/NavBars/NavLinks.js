@@ -16,11 +16,12 @@ import { comparaFechas } from "../../FuncionesAuxiliares/FuncionesAuxiliares";
 import Modal from "../../components/UI/Modal/Modal";
 import ComboBox from "../../components/ComboBox/ComboBox";
 import SimpleButton from "../../components/UI/SimpleButton/SimpleButton";
+import Input from "../../components/UI/Input/Input";
 
 const NavLinks = (props) => {
   const authCtx = useContext(AuthContext);
   const isLoggedIn = authCtx.isLoggedIn;
-  const mobile = document.getElementById('root').clientWidth<900;
+  const mobile = document.getElementById('root').clientWidth<990;
   const refM = useRef();
   const pedirCaja = useHttp()
   const comision = useHttp()
@@ -38,6 +39,11 @@ const NavLinks = (props) => {
     pedirCaja({url:'/cajaParaCalculos'},callPropinas);
   }
   
+  const calcularJornal = () =>{
+    if(!Admin)dispatch({type:'SHOW_MODAL'});
+    else empleados({url:'/listadoHabilitarEmpleados'},obtenerEmpleadosJ);
+  }
+
   const respuestaComision = (res) =>{
     dispatch({type:'SHOW_MENSAJE',value:'El total acumulado en comisiones es de ' + res.mensaje.mensaje});
   }
@@ -105,9 +111,21 @@ const NavLinks = (props) => {
   }
 
   const AdminCalP = () =>{
-    comision(
+    propinas(
       {
         url: "/propina",
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: {ciEmpleado:state.empleado.value,idCaja:state.caja},
+      },
+      respuestaPropina
+    );
+  }
+
+  const AdminCalJ = () =>{
+    jornal(
+      {
+        url: "/joranl",
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: {ciEmpleado:state.empleado.value,idCaja:state.caja},
@@ -120,8 +138,10 @@ const NavLinks = (props) => {
     dispatch({type:'CARGAR',payload:res.mensaje.mensaje,destino:{function:AdminCalC,char:'C'}});
   }
   const obtenerEmpleadosP = (res) => {
-    console.log(res);
     dispatch({type:'CARGAR',payload:res.mensaje.mensaje,destino:{function:AdminCalP,char:'P'}});
+  }
+  const obtenerEmpleadosJ = (res) => {
+    dispatch({type:'CARGAR',payload:res.mensaje.mensaje,destino:{function:AdminCalJ,char:'J'}});
   }
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -132,8 +152,9 @@ const NavLinks = (props) => {
       opciones: [
         { id: 1, text: "Cuponera", to: "/cuponeras" },
         { id: 2, text: "Empleados", to: "/empleados" },
-        { id: 3, text: "Reseteo contraseña", to: "/reseteo" },
-        { id: 4, text: "Productos", to: "/productos" },
+        { id: 3, text: "Encargado", to: "/encargado" },
+        { id: 4, text: "Reseteo contraseña", to: "/reseteo" },
+        { id: 5, text: "Productos", to: "/productos" },
       ],
     },
   ];
@@ -161,6 +182,14 @@ const NavLinks = (props) => {
             dispatch({ type: "CLICK" });
           }}
           opciones={state.empleados}/>
+          <form className={classesCal.campos}>
+            <label>Minutos extra</label>
+            <Input
+                ref={refM}
+                isValid={state.Minutos.isValid}
+                input={INPUTS[0]}
+              />
+          </form>
           <SimpleButton action={state.destino.function}>{`Calcular ${state.destino.char==='C'?'comisione':'propinas'}`}</SimpleButton>
         </div>
       </Modal>
@@ -288,6 +317,9 @@ const NavLinks = (props) => {
         </li>
         <li>
           <NavButton onClick={calcularPropina}>Propinas</NavButton>
+        </li>
+        <li>
+          <NavButton onClick={calcularJornal}>Jornal</NavButton>
         </li>
         {isLoggedIn && (
           <li>
