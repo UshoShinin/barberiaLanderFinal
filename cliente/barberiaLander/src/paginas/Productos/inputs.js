@@ -40,7 +40,7 @@ const inputs = (state, dispatch) => {
         id: 3,
         type: "text",
         value: state.Producto.stock.value,
-        placeholder: "Monto",
+        placeholder: "Stock",
         onChange: (event) => {
           dispatch({
             type: "USER_P_STOCK",

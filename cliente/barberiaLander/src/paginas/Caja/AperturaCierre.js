@@ -16,7 +16,7 @@ import { resetAgendaProductos } from "./AuxiliaresCaja/reseteos";
 import { initialState, cajaReducer } from "./ReducerCaja";
 import useHttp from "../../hooks/useHttp";
 import inputs from "./AuxiliaresCaja/inputs";
-import { getElementById } from "../../FuncionesAuxiliares/FuncionesAuxiliares";
+import { getElementById,comparaFechas } from "../../FuncionesAuxiliares/FuncionesAuxiliares";
 import AuthContext from "../../store/AuthContext";
 import { useHistory } from "react-router-dom";
 import ContenidoCerrarCaja from "./ContenidoCerrarCaja/ContenidoCerrarCaja";
@@ -287,13 +287,6 @@ const AperturaCierre = () => {
       );
     }
   };
-
-  const comparaFechas = (dia,mes,year,fecha)=>{
-    let myYear = parseInt(fecha.substring(0,4),10);
-    let miMes = parseInt(fecha.substring(5,7),10);
-    let miDia = parseInt(fecha.substring(8,10),10);
-    return (myYear<year||miMes<mes||miDia<dia);
-  }
 
   const submitHandler = (e) => {
     e.preventDefault();

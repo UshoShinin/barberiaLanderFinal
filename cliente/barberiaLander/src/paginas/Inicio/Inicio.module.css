@@ -28,13 +28,13 @@
     position: absolute;
     inset:0;
     background-color: var(--clr-navbar);
-    opacity: 0.45;
+    opacity: 0;
     z-index: 100;
     transition: opacity 180ms linear;
 }
 
 .Contactanos>figure:hover::after{
-    opacity: 0.2;
+    opacity: 0;
 }
 
 .Contactanos>div{

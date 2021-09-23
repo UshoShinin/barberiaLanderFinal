@@ -59,4 +59,11 @@ export const getElementById = (list, id) => {
   return null;
 };
 
+export const comparaFechas = (dia,mes,year,fecha)=>{
+  let myYear = parseInt(fecha.substring(0,4),10);
+  let miMes = parseInt(fecha.substring(5,7),10);
+  let miDia = parseInt(fecha.substring(8,10),10);
+  return (myYear<year||miMes<mes||miDia<dia);
+}
+
 

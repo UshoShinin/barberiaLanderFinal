@@ -4,9 +4,11 @@ import classes from './NavBar.module.css';
 
 const Navbar = () => {
 
-  return <div className={classes.NavBar}>
-    <NavBarMobile/>
-    <NavBarPc/>
-  </div>;
+  return <>
+    <div className={classes.NavBar}>
+      <NavBarMobile/>
+      <NavBarPc/>
+    </div>
+  </>
 };
 export default Navbar;
