@@ -3052,7 +3052,7 @@ const listadoEmpleadosHabilitacion = async () => {
     const ret = await pool
       .request()
       .query(
-        "select Cedula as id, Nombre as title, Habilitado as habilitado from Empleado"
+        "select E.Cedula as id, E.Nombre as title, E.Habilitado as habilitado, ER.IdRol as idRol from Empleado E, Empleado_Rol ER where E.Cedula = ER.Cedula"
       );
     return { codigo: 200, mensaje: ret.recordset };
   } catch (error) {
