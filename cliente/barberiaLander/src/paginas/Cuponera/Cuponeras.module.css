@@ -51,8 +51,9 @@
 .container > div .textP,
 .ajuste > div .textP {
   color: var(--clr-inActive);
-  font-size: 1.15em;
+  font-size: 1.4em;
   transition: color 180ms linear;
+  margin-top: 0.8em;
 }
 
 .container > div:hover .textP,

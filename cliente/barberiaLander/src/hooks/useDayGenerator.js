@@ -66,6 +66,7 @@ const useDayGenerator = () => {
           let maxDays = getMonthValue(myMonth,myYear);
           for (let i = 1; i <= maxDays; i++) {
             diaSemana = diaSemana > 7 ? 1 : diaSemana;
+            jornal = getElementById(miJornada,diaSemana);
             diasAuxiliares.push({
               num: i,
               mes:myMonth,

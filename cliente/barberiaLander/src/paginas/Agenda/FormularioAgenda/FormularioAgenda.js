@@ -31,7 +31,7 @@ const FormularioAgenda = (props) => {
   const nombreRef = useRef();
   const telefonoRef = useRef();
   const descripcionRef = useRef();
-  const height = document.getElementById("root").clientWidth > 1400 ? 11 : 7;
+  const height = document.getElementById("root").clientWidth > 1400 ? 8 : 5.5;
   const DaysGenerator = useDayGenerator();
   const authCtx = useContext(AuthContext);
   const [diasMostrar, setDiasMostrar] = useState(null);
